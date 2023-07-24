@@ -6,11 +6,11 @@
   "main": "index.js",
   "scripts": {
     "build": "cd backend && npm install && cd ../frontend && npm install && npm run build",
-    "start": "nodemon --watch backend --exec node --experimental-modules backend/server.js"
+    "start": "node --experimental-modules backend/server.js"
   },
   "repository": {
     "type": "git",
-    "url": "(https://github.com/tennyson243/Umiel-Test.git)"
+    "url": "https://github.com/tennyson243/Umiel-Test.git"
   },
   "author": "tennyson",
   "license": "ISC",
@@ -35,8 +35,7 @@
   },
   "devDependencies": {
     "eslint": "^8.44.0",
-    "eslint-plugin-react": "^7.32.2",
-    "nodemon": "^3.0.1"
+    "eslint-plugin-react": "^7.32.2"
   },
   "engines": {
     "node": "18.16.1"

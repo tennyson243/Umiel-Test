@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "(https://github.com/tennyson243/umiel-web-site-new.git)"
+    "url": "(https://github.com/tennyson243/Umiel-Test.git)"
   },
   "author": "tennyson",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/tennyson243/umiel-web-site-new/issues"
+    "url": "https://github.com/tennyson243/Umiel-Test/issues"
   },
-  "homepage": "https://github.com/tennyson243/umiel-web-site-new#readme",
+  "homepage": "https://github.com/tennyson243/Umiel-Test#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "country-iso-2-to-3": "^1.1.0",
@@ -36,5 +36,8 @@
     "eslint": "^8.44.0",
     "eslint-plugin-react": "^7.32.2",
     "nodemon": "^3.0.1"
+  },
+  "engines": {
+    "node": "18.16.1"
   }
 }

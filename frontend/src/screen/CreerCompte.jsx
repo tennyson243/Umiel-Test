@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Helmet } from "react-helmet-async";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -57,7 +57,6 @@ const CreerCompte = () => {
     handleSubmit,
     formState: { errors },
     control,
-    watch,
   } = useForm({
     defaultValues: {
       nom: "",
@@ -76,17 +75,14 @@ const CreerCompte = () => {
   const redirectInUrl = new URLSearchParams(search).get("redirect");
   const redirect = redirectInUrl ? redirectInUrl : "/";
   const theme = useTheme();
-  const [countryCode, setCountryCode] = useState("US"); // default country code
 
   const userRegister = useSelector((state) => state.userRegister);
-  const { userInfo, loading, error } = userRegister;
+  const { loading, error } = userRegister;
 
   const dispatch = useDispatch();
   const onSubmit = (data) => {
     dispatch(register(data.nom, data.email, data.telephone, data.motdepasse));
   };
-
-  const selectedCountry = watch("country"); // get the selected country from the form
 
   return (
     <>

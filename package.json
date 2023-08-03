@@ -38,6 +38,6 @@
     "eslint-plugin-react": "^7.32.2"
   },
   "engines": {
-    "node": "18.16.1"
+    "node": "17.9.1"
   }
 }

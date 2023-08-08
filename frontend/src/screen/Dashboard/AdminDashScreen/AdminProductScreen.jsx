@@ -7,88 +7,117 @@ import {
   CardActions,
   CardContent,
   Collapse,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Rating,
+  Slide,
   Typography,
   useMediaQuery,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { Helmet } from "react-helmet-async";
+import React, { forwardRef, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import {
-  createPopulaire,
-  deletePopulaire,
-  listPopulaires,
-} from "../../../actions/Blog/populaireAction";
-import Chargement from "../../../Components/Chargement";
+  PRODUCT_CREATE_RESET,
+  PRODUCT_DELETE_RESET,
+} from "../../../constants/productConstants";
+import {
+  createProduct,
+  deleteProduct,
+  listProduits,
+} from "../../../actions/productActions";
+import { listTopSellers } from "../../../actions/userActions";
+import { toast } from "react-toastify";
 import FlexBetween from "../../../Components/FlexBetween";
-import MessageBox from "../../../Components/MessageBox";
-import {
-  POPULAIRE_CREATE_RESET,
-  POPULAIRE_DELETE_RESET,
-} from "../../../constants/Blog/populaireConstants";
+import { Helmet } from "react-helmet-async";
 import Header from "../../../Components/Header";
+import Chargement from "../../../Components/Chargement";
+import MessageBox from "../../../Components/MessageBox";
 
-const PopulaireDashScreen = () => {
+const Transition = forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
+const AdminProductScreen = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const theme = useTheme();
+  const [open, setOpen] = useState(false);
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const navigate = useNavigate();
-
-  const populairesList = useSelector((state) => state.populairesList);
-  const { loading, error, populaires } = populairesList;
-  const populaireCreate = useSelector((state) => state.populaireCreate);
+  const { pageNumber = 1 } = useParams();
+  const { pathname } = useLocation();
+  const sellerMode = pathname.indexOf("/seller") >= 0;
+  const produitList = useSelector((state) => state.produitList);
+  const { loading, error, products } = produitList;
+  const productCreate = useSelector((state) => state.productCreate);
+  const [selectedOrderId, setSelectedOrderId] = useState(null);
   const {
     loading: loadingCreate,
     error: errorCreate,
     success: successCreate,
-    populaire: createdPopulaire,
-  } = populaireCreate;
+    product: createdProduct,
+  } = productCreate;
 
-  const populaireDelete = useSelector((state) => state.populaireDelete);
+  const productDelete = useSelector((state) => state.productDelete);
   const {
     loading: loadingDelete,
     error: errorDelete,
     success: successDelete,
-  } = populaireDelete;
+  } = productDelete;
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
   const dispatch = useDispatch();
   useEffect(() => {
     if (successCreate) {
-      dispatch({ type: POPULAIRE_CREATE_RESET });
-      navigate(`/nutritions/${createdPopulaire._id}/edit`);
+      toast.info("Produit creer avec Succès");
+      dispatch({ type: PRODUCT_CREATE_RESET });
+      navigate(`/product/${createdProduct._id}/edit`);
     }
     if (successDelete) {
-      dispatch({ type: POPULAIRE_DELETE_RESET });
+      toast.info("Produit Supprimer avec Succès");
+      dispatch({ type: PRODUCT_DELETE_RESET });
     }
-    dispatch(listPopulaires());
+    dispatch(listProduits());
+    dispatch(listTopSellers());
   }, [
-    createdPopulaire,
+    createdProduct,
     dispatch,
     navigate,
+    sellerMode,
     successCreate,
     successDelete,
     userInfo._id,
+    pageNumber,
   ]);
 
-  const deleteHandler = (populaire) => {
-    if (window.confirm("Are you sure to delete?")) {
-      dispatch(deletePopulaire(populaire._id));
-    }
+  const deleteHandler = (product) => {
+    dispatch(deleteProduct(product._id));
+    setOpen(false);
   };
+
   const createHandler = () => {
-    dispatch(createPopulaire());
+    dispatch(createProduct());
+  };
+  const handleClickOpen = (productId) => {
+    // Set the orderId in the state before opening the dialog
+    setSelectedOrderId(productId);
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
   };
   return (
     <>
       <Helmet>
-        <title>Nutrition Naturelle</title>
+        <title>Les produits</title>
       </Helmet>
+
       <Box m="1.5rem 2.5rem">
-        <Header
-          title="NUTRITIONS"
-          subtitle="La liste des articles sur la nutrition naturelle"
-        />
+        <Header title="PRODUITS" subtitle="Liste complete des produits" />
+
         {loadingDelete && <Chargement />}
         {errorDelete && <MessageBox severity="error">{errorDelete}</MessageBox>}
 
@@ -127,7 +156,7 @@ const PopulaireDashScreen = () => {
                     padding: "10px 20px",
                   }}
                 >
-                  Ajouter un article nutrition naturelle
+                  Ajouter un produit
                 </Button>
               </Box>
             </Box>
@@ -142,7 +171,7 @@ const PopulaireDashScreen = () => {
                 "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
               }}
             >
-              {populaires.map((populaire) => (
+              {products.map((product) => (
                 <>
                   <Card
                     sx={{
@@ -150,7 +179,7 @@ const PopulaireDashScreen = () => {
                       backgroundColor: theme.palette.background.alt,
                       borderRadius: "0.55rem",
                     }}
-                    key={populaire._id}
+                    key={product._id}
                   >
                     <CardContent>
                       <Typography
@@ -158,20 +187,31 @@ const PopulaireDashScreen = () => {
                         color={theme.palette.secondary[700]}
                         gutterBottom
                       >
-                        {populaire.sousCategorie}
+                        {product.category}
                       </Typography>
                       <FlexBetween>
                         <Typography variant="h5" component="div">
-                          {populaire.title}
+                          {product.nom}
                         </Typography>
                         <Avatar
-                          src={populaire.cover}
+                          src={product.image}
                           sx={{
                             width: 70,
                             height: 70,
                           }}
                         />
                       </FlexBetween>
+                      <Typography
+                        sx={{ mb: "1.5rem" }}
+                        color={theme.palette.secondary[400]}
+                      >
+                        ${Number(product.prix).toFixed(2)}
+                      </Typography>
+                      <Rating value={product.rating} readOnly />
+
+                      <Typography variant="body2">
+                        {product.description}
+                      </Typography>
                     </CardContent>
                     <CardActions>
                       <Button
@@ -191,12 +231,8 @@ const PopulaireDashScreen = () => {
                       }}
                     >
                       <CardContent>
-                        <Typography>id: {populaire._id}</Typography>
-                        <Box>
-                          <Typography>
-                            {populaire.desc.slice(0, 70)}...
-                          </Typography>
-                        </Box>
+                        <Typography>id: {product._id}</Typography>
+                        <Typography>Seller : {product.seller.name}</Typography>
                         <FlexBetween
                           sx={{
                             backgroundColor: theme.palette.primary[700],
@@ -208,7 +244,7 @@ const PopulaireDashScreen = () => {
                             variant="primary"
                             size="small"
                             onClick={() =>
-                              navigate(`/populaire/${populaire._id}/edit`)
+                              navigate(`/product/${product._id}/edit`)
                             }
                           >
                             Modifier
@@ -216,7 +252,7 @@ const PopulaireDashScreen = () => {
                           <Button
                             variant="primary"
                             size="small"
-                            onClick={() => deleteHandler(populaire)}
+                            onClick={() => handleClickOpen(product)}
                           >
                             Supprimer
                           </Button>
@@ -230,8 +266,37 @@ const PopulaireDashScreen = () => {
           </Box>
         )}
       </Box>
+
+      <Dialog
+        open={open}
+        TransitionComponent={Transition}
+        keepMounted
+        onClose={handleClose}
+        aria-describedby="alert-dialog-slide-description"
+      >
+        <DialogTitle>
+          <Typography variant="h4">Confirmation de Suppression</Typography>
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-slide-description">
+            Vous êtes sûr de vouloir supprimer cette commande ?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button variant="contained" color="success" onClick={handleClose}>
+            Non
+          </Button>
+          <Button
+            variant="contained"
+            color="error"
+            onClick={() => deleteHandler(selectedOrderId)}
+          >
+            Oui
+          </Button>
+        </DialogActions>
+      </Dialog>
     </>
   );
 };
 
-export default PopulaireDashScreen;
+export default AdminProductScreen;

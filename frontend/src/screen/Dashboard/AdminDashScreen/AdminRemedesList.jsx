@@ -1,4 +1,15 @@
-import { useTheme } from "@emotion/react";
+import React, { useEffect, useState } from "react";
+import {
+  createHero,
+  deleteHero,
+  listHeros,
+} from "../../../actions/Blog/heroActions";
+import {
+  HERO_CREATE_RESET,
+  HERO_DELETE_RESET,
+} from "../../../constants/Blog/heroConstants";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import {
   Avatar,
   Box,
@@ -10,60 +21,49 @@ import {
   Typography,
   useMediaQuery,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { Helmet } from "react-helmet-async";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import {
-  createPopulaire,
-  deletePopulaire,
-  listPopulaires,
-} from "../../../actions/Blog/populaireAction";
-import Chargement from "../../../Components/Chargement";
+import { useTheme } from "@emotion/react";
 import FlexBetween from "../../../Components/FlexBetween";
 import MessageBox from "../../../Components/MessageBox";
-import {
-  POPULAIRE_CREATE_RESET,
-  POPULAIRE_DELETE_RESET,
-} from "../../../constants/Blog/populaireConstants";
+import Chargement from "../../../Components/Chargement";
 import Header from "../../../Components/Header";
+import { Helmet } from "react-helmet-async";
 
-const PopulaireDashScreen = () => {
+const AdminRemedesList = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const theme = useTheme();
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const navigate = useNavigate();
 
-  const populairesList = useSelector((state) => state.populairesList);
-  const { loading, error, populaires } = populairesList;
-  const populaireCreate = useSelector((state) => state.populaireCreate);
+  const herosList = useSelector((state) => state.herosList);
+  const { loading, error, heros } = herosList;
+  const heroCreate = useSelector((state) => state.heroCreate);
   const {
     loading: loadingCreate,
     error: errorCreate,
     success: successCreate,
-    populaire: createdPopulaire,
-  } = populaireCreate;
+    hero: createdHero,
+  } = heroCreate;
 
-  const populaireDelete = useSelector((state) => state.populaireDelete);
+  const heroDelete = useSelector((state) => state.heroDelete);
   const {
     loading: loadingDelete,
     error: errorDelete,
     success: successDelete,
-  } = populaireDelete;
+  } = heroDelete;
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
   const dispatch = useDispatch();
   useEffect(() => {
     if (successCreate) {
-      dispatch({ type: POPULAIRE_CREATE_RESET });
-      navigate(`/nutritions/${createdPopulaire._id}/edit`);
+      dispatch({ type: HERO_CREATE_RESET });
+      navigate(`/remedes/${createdHero._id}/edit`);
     }
     if (successDelete) {
-      dispatch({ type: POPULAIRE_DELETE_RESET });
+      dispatch({ type: HERO_DELETE_RESET });
     }
-    dispatch(listPopulaires());
+    dispatch(listHeros());
   }, [
-    createdPopulaire,
+    createdHero,
     dispatch,
     navigate,
     successCreate,
@@ -71,24 +71,22 @@ const PopulaireDashScreen = () => {
     userInfo._id,
   ]);
 
-  const deleteHandler = (populaire) => {
+  const deleteHandler = (hero) => {
     if (window.confirm("Are you sure to delete?")) {
-      dispatch(deletePopulaire(populaire._id));
+      dispatch(deleteHero(hero._id));
     }
   };
   const createHandler = () => {
-    dispatch(createPopulaire());
+    dispatch(createHero());
   };
   return (
     <>
       <Helmet>
-        <title>Nutrition Naturelle</title>
+        <title>Les remedes naturels</title>
       </Helmet>
+
       <Box m="1.5rem 2.5rem">
-        <Header
-          title="NUTRITIONS"
-          subtitle="La liste des articles sur la nutrition naturelle"
-        />
+        <Header title="LES REMEDES" subtitle="La liste des remedes naturels" />
         {loadingDelete && <Chargement />}
         {errorDelete && <MessageBox severity="error">{errorDelete}</MessageBox>}
 
@@ -127,7 +125,7 @@ const PopulaireDashScreen = () => {
                     padding: "10px 20px",
                   }}
                 >
-                  Ajouter un article nutrition naturelle
+                  Ajouter un remede naturel
                 </Button>
               </Box>
             </Box>
@@ -142,7 +140,7 @@ const PopulaireDashScreen = () => {
                 "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
               }}
             >
-              {populaires.map((populaire) => (
+              {heros.map((hero) => (
                 <>
                   <Card
                     sx={{
@@ -150,7 +148,7 @@ const PopulaireDashScreen = () => {
                       backgroundColor: theme.palette.background.alt,
                       borderRadius: "0.55rem",
                     }}
-                    key={populaire._id}
+                    key={hero._id}
                   >
                     <CardContent>
                       <Typography
@@ -158,14 +156,14 @@ const PopulaireDashScreen = () => {
                         color={theme.palette.secondary[700]}
                         gutterBottom
                       >
-                        {populaire.sousCategorie}
+                        {hero.sousCategorie}
                       </Typography>
                       <FlexBetween>
                         <Typography variant="h5" component="div">
-                          {populaire.title}
+                          {hero.title}
                         </Typography>
                         <Avatar
-                          src={populaire.cover}
+                          src={hero.cover}
                           sx={{
                             width: 70,
                             height: 70,
@@ -191,12 +189,8 @@ const PopulaireDashScreen = () => {
                       }}
                     >
                       <CardContent>
-                        <Typography>id: {populaire._id}</Typography>
-                        <Box>
-                          <Typography>
-                            {populaire.desc.slice(0, 70)}...
-                          </Typography>
-                        </Box>
+                        <Typography>id: {hero._id}</Typography>
+
                         <FlexBetween
                           sx={{
                             backgroundColor: theme.palette.primary[700],
@@ -207,16 +201,14 @@ const PopulaireDashScreen = () => {
                           <Button
                             variant="primary"
                             size="small"
-                            onClick={() =>
-                              navigate(`/populaire/${populaire._id}/edit`)
-                            }
+                            onClick={() => navigate(`/heros/${hero._id}/edit`)}
                           >
                             Modifier
                           </Button>
                           <Button
                             variant="primary"
                             size="small"
-                            onClick={() => deleteHandler(populaire)}
+                            onClick={() => deleteHandler(hero)}
                           >
                             Supprimer
                           </Button>
@@ -234,4 +226,4 @@ const PopulaireDashScreen = () => {
   );
 };
 
-export default PopulaireDashScreen;
+export default AdminRemedesList;

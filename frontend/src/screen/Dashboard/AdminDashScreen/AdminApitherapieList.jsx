@@ -22,13 +22,13 @@ import {
   deleteApitherapie,
   listApitherapie,
 } from "../../../actions/Blog/apitherapieActions";
-import { Helmet } from "react-helmet-async";
+import FlexBetween from "../../../Components/FlexBetween";
 import Chargement from "../../../Components/Chargement";
 import MessageBox from "../../../Components/MessageBox";
-import FlexBetween from "../../../Components/FlexBetween";
 import Header from "../../../Components/Header";
+import { Helmet } from "react-helmet-async";
 
-const ApitherapieDashScreen = () => {
+const AdminApitherapieList = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const theme = useTheme();
   const isNonMobile = useMediaQuery("(min-width:600px)");
@@ -57,7 +57,7 @@ const ApitherapieDashScreen = () => {
   useEffect(() => {
     if (successCreate) {
       dispatch({ type: APITHERAPIE_CREATE_RESET });
-      navigate(`/apitherapies/${createdApitherapie._id}/edit`);
+      navigate(`/apitherapie/${createdApitherapie._id}/edit`);
     }
     if (successDelete) {
       dispatch({ type: APITHERAPIE_DELETE_RESET });
@@ -210,9 +210,7 @@ const ApitherapieDashScreen = () => {
                               variant="primary"
                               size="small"
                               onClick={() =>
-                                navigate(
-                                  `/apitherapies/${apitherapie._id}/edit`
-                                )
+                                navigate(`/apitherapie/${apitherapie._id}/edit`)
                               }
                             >
                               Modifier
@@ -239,4 +237,4 @@ const ApitherapieDashScreen = () => {
   );
 };
 
-export default ApitherapieDashScreen;
+export default AdminApitherapieList;

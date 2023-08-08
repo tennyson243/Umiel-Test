@@ -57,7 +57,7 @@ const LifestyleDashScreen = () => {
   useEffect(() => {
     if (successCreate) {
       dispatch({ type: LIFESTYLE_CREATE_RESET });
-      navigate(`/lifestyles/${createdLifestyle._id}/edit`);
+      navigate(`/Santés/${createdLifestyle._id}/edit`);
     }
     if (successDelete) {
       dispatch({ type: LIFESTYLE_DELETE_RESET });

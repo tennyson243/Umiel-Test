@@ -95,6 +95,8 @@ const Actions = ({ matches }) => {
 
   const isAdmin = userInfo && userInfo.isAdmin;
   const isSeller = userInfo && userInfo.isSeller;
+  const isSuperAdmin = userInfo && userInfo.isSuperAdmin;
+  const isBlogeur = userInfo && userInfo.isBlogeur;
 
   return (
     <>
@@ -153,7 +155,7 @@ const Actions = ({ matches }) => {
             >
               {userInfo ? (
                 <div>
-                  {isAdmin && isSeller ? ( // Check if user is both admin and seller
+                  {isAdmin && isSeller && isBlogeur && isSuperAdmin ? ( // Check if user is both admin and seller
                     <Button
                       variant="contained"
                       onClick={() => navigate("/dashboard")}
@@ -165,14 +167,14 @@ const Actions = ({ matches }) => {
                         fontWeight: "bold",
                       }}
                     >
-                      Admin
+                      Super-Admin
                     </Button>
                   ) : (
                     <>
                       {isAdmin && ( // Check if user is only admin
                         <Button
                           variant="contained"
-                          onClick={() => navigate("/dashboard")}
+                          onClick={() => navigate("/dashboards")}
                           endIcon={<ArrowDropDownIcon />}
                           sx={{
                             backgroundColor: theme.palette.secondary.light,
@@ -239,7 +241,9 @@ const Actions = ({ matches }) => {
                           </>
                         )}
                       {!isSeller &&
-                        !isAdmin && ( // Check if user is neither admin nor seller
+                        !isAdmin &&
+                        !isBlogeur &&
+                        !isSuperAdmin && ( // Check if user is neither admin nor seller
                           <Button
                             variant="contained"
                             onClick={() => navigate("/profile")}
@@ -252,6 +256,24 @@ const Actions = ({ matches }) => {
                             }}
                           >
                             {userInfo.nom}
+                          </Button>
+                        )}
+                      {isBlogeur &&
+                        !isSeller &&
+                        !isAdmin &&
+                        !isSuperAdmin && ( // Check if user is neither admin nor seller
+                          <Button
+                            variant="contained"
+                            onClick={() => navigate("/profile")}
+                            endIcon={<ArrowDropDownIcon />}
+                            sx={{
+                              backgroundColor: theme.palette.secondary.light,
+                              color: theme.palette.background.alt,
+                              fontSize: "14px",
+                              fontWeight: "bold",
+                            }}
+                          >
+                            Redateur(trice)
                           </Button>
                         )}
                     </>

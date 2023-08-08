@@ -1,6 +1,13 @@
-import { useTheme } from "@emotion/react";
-import { Add, Delete, Edit } from "@mui/icons-material";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import {
+  modificationPopulaire,
+  updatePopulaire,
+} from "../../../actions/Blog/populaireAction";
+import { POPULAIRE_UPDATE_RESET } from "../../../constants/Blog/populaireConstants";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  Box,
   Button,
   Card,
   CardContent,
@@ -18,98 +25,102 @@ import {
   Typography,
   useMediaQuery,
 } from "@mui/material";
-import { Box } from "@mui/system";
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { Helmet } from "react-helmet-async";
-import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import {
-  modificationLifestyle,
-  updateLifestyle,
-} from "../../../actions/Blog/lifeStyleActions";
-import Chargement from "../../../Components/Chargement";
+import { useTheme } from "@emotion/react";
+import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+import { Add, Delete, Edit } from "@mui/icons-material";
 import MessageBox from "../../../Components/MessageBox";
-import { LIFESTYLE_UPDATE_RESET } from "../../../constants/Blog/lifeStyleConstants";
+import Chargement from "../../../Components/Chargement";
 import Header from "../../../Components/Header";
-import ReactMarkdown from "react-markdown";
+import { Helmet } from "react-helmet-async";
 
-const LifestyleEditScreen = () => {
+const AdminModifierNutrition = () => {
   const theme = useTheme();
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const navigate = useNavigate();
   const params = useParams();
-  const { id: lifestyleId } = params;
+  const { id: populaireId } = params;
   const [title, setTitle] = useState("");
   const [catgeory, setCategory] = useState("");
-  const [sousCategorie, setSousCategorie] = useState(1);
   const [cover, setCover] = useState("");
   const [date, setDate] = useState("");
-  const [introduction, setIntroduction] = useState("");
-  const [sections, setSections] = useState([]);
-  const [conclusion, setConclusion] = useState("");
-
+  const [desc, setDesc] = useState("");
+  const [role, setRole] = useState("");
+  const [exemple, setExemples] = useState([]);
+  const [conclusion, setConclusions] = useState("");
   const [selectedRecette, setSelectedRecette] = useState("");
   const [newTitre, setNewTitre] = useState("");
-  const [newContenu, setNewContenu] = useState("");
+  const [newType, setNewType] = useState("");
+  const [newExpli, setNewExpli] = useState("");
+  const [newBienfait, setNewBienfait] = useState("");
+  const [newMode, setNewMode] = useState("");
 
   const [newTitreName, setNewTitreName] = useState("");
-  const [newContenuName, setNewContenuName] = useState("");
+  const [newTypeName, setNewTypeName] = useState("");
+  const [newExpliName, setNewExpliName] = useState("");
+  const [newBienfaitName, setNewBienfaitName] = useState("");
+  const [newModeName, setNewModeName] = useState("");
   const [editingRecette, setEditingRecette] = useState(false);
   const [selectedRecipe, setSelectedRecipe] = useState(null);
 
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
-  const lifestyleModification = useSelector(
-    (state) => state.lifestyleModification
+  const populaireModification = useSelector(
+    (state) => state.populaireModification
   );
-  const { loading, error, lifestyle } = lifestyleModification;
-  const lifestyleUpdate = useSelector((state) => state.lifestyleUpdate);
+  const { loading, error, populaire } = populaireModification;
+  const populaireUpdate = useSelector((state) => state.populaireUpdate);
+  const [sousCategorie, setSousCategorie] = useState(1);
   const {
     loading: loadingUpdate,
     error: errorUpdate,
     success: successUpdate,
-  } = lifestyleUpdate;
+  } = populaireUpdate;
 
   const dispatch = useDispatch();
   useEffect(() => {
     if (successUpdate) {
-      navigate("/Santés");
+      navigate("/nutrition");
     }
-    if (!lifestyle || lifestyle._id !== lifestyleId || successUpdate) {
-      dispatch({ type: LIFESTYLE_UPDATE_RESET });
-      dispatch(modificationLifestyle(lifestyleId));
+    if (!populaire || populaire._id !== populaireId || successUpdate) {
+      dispatch({ type: POPULAIRE_UPDATE_RESET });
+      dispatch(modificationPopulaire(populaireId));
     } else {
-      setCover(lifestyle.cover);
-      setCategory(lifestyle.catgeory);
-      setTitle(lifestyle.title);
-      setSousCategorie(lifestyle.sousCategorie);
-      setDate(lifestyle.createdAt.substring(0, 10));
-      setSections(lifestyle.sections);
-      setIntroduction(lifestyle.introduction);
-      setConclusion(lifestyle.conclusion);
+      setCover(populaire.cover);
+      setCategory(populaire.catgeory);
+      setSousCategorie(populaire.sousCategorie);
+      setTitle(populaire.title);
+      setDate(populaire.createdAt.substring(0, 10));
+      setDesc(populaire.desc);
+      setRole(populaire.role);
+      setExemples(populaire.exemple);
+      setConclusions(populaire.conclusion);
     }
-  }, [lifestyle, dispatch, lifestyleId, successUpdate, navigate]);
+  }, [populaire, dispatch, populaireId, successUpdate, navigate]);
 
   const submitHandler = (e) => {
     e.preventDefault();
     // TODO: dispatch update product
     dispatch(
-      updateLifestyle({
-        _id: lifestyleId,
+      updatePopulaire({
+        _id: populaireId,
         cover,
         catgeory,
+        sousCategorie,
         title,
         date,
-        introduction,
-        sections,
+        desc,
+        role,
+        exemple,
         conclusion,
-        sousCategorie,
       })
     );
   };
   const [loadingUpload, setLoadingUpload] = useState(false);
   const [errorUpload, setErrorUpload] = useState("");
+
+  const [loadingUploade, setLoadingUploade] = useState(false);
+  const [errorUploade, setErrorUploade] = useState("");
 
   const uploadFileHandler = async (e) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -139,38 +150,47 @@ const LifestyleEditScreen = () => {
     setSousCategorie(event.target.value);
   };
 
-  const handleSectionClick = (recipe) => {
+  const handleExempleClick = (recipe) => {
     setSelectedRecipe(recipe);
     setEditingRecette(true);
   };
 
-  const handleDeleteSection = (recipe) => {
-    setSections(sections.filter((item) => item !== recipe));
+  const handleDeleteExemple = (recipe) => {
+    setExemples(exemple.filter((item) => item !== recipe));
     if (selectedRecipe && recipe === selectedRecipe) {
       setSelectedRecipe(null);
       setEditingRecette(false);
     }
   };
 
-  const handleEditSections = () => {
-    const updatedSections = sections.map((item) => {
+  const handleEditRecette = () => {
+    const updatedExemples = exemple.map((item) => {
       if (item === selectedRecipe) {
         return {
           ...selectedRecipe,
           titre: newTitre || selectedRecipe.titre,
-          contenu: newContenu || selectedRecipe.contenu,
+          type: newType || selectedRecipe.type,
+          expli: newExpli || selectedRecipe.expli,
+          bienfait: newBienfait || selectedRecipe.bienfait,
+          mode: newMode || selectedRecipe.mode,
         };
       }
       return item;
     });
-    setSections(updatedSections);
+    setExemples(updatedExemples);
+    setSelectedRecipe(null);
     setNewTitre("");
-    setNewContenu("");
+    setNewType("");
+    setNewExpli("");
+    setNewBienfait("");
+    setNewMode("");
+    setEditingRecette(false);
   };
+
   return (
     <>
       <Helmet>
-        <title>Modifier un article Sante Naturelle</title>
+        <title>Modifier un article nutrition naturelle</title>
       </Helmet>
 
       {loadingUpdate && <Chargement />}
@@ -184,7 +204,7 @@ const LifestyleEditScreen = () => {
           <Box m="1.5rem 2.5rem">
             <Header
               title="MODIFICATION"
-              subtitle="Modifier un Article Sante Naturelle"
+              subtitle="Modifier un article Nutrition naturelle"
             />
             <Typography
               variant="h4"
@@ -192,7 +212,7 @@ const LifestyleEditScreen = () => {
               paddingTop="20px"
               paddingBottom="20px"
             >
-              Modifier l'article: {lifestyleId}
+              Modifier l'article: {populaireId}
             </Typography>
             <form onSubmit={submitHandler}>
               <Box>
@@ -225,17 +245,17 @@ const LifestyleEditScreen = () => {
                           value={title}
                           onChange={(e) => setTitle(e.target.value)}
                           required
-                          sx={{ gridColumn: "span 4" }}
+                          sx={{ gridColumn: "span 3" }}
                         />
-
                         <TextField
                           fullWidth
                           type="text"
-                          label="Date"
+                          label="Time"
                           value={date}
                           onChange={(e) => setDate(e.target.value)}
                           required
                           sx={{ gridColumn: "span 1" }}
+                          disabled
                         />
                         <TextField
                           fullWidth
@@ -248,7 +268,7 @@ const LifestyleEditScreen = () => {
                           disabled
                         />
 
-                        <Box sx={{ gridColumn: "span 1" }}>
+                        <Box sx={{ gridColumn: "span 2" }}>
                           <FormControl
                             variant="filled"
                             sx={{ m: 1, minWidth: 300 }}
@@ -265,20 +285,21 @@ const LifestyleEditScreen = () => {
                                 width: "200px",
                               }}
                             >
-                              <MenuItem value="Les enfants">
-                                Les enfants
+                              <MenuItem value="Aliments sains et équilibrés">
+                                Aliments sains et équilibrés
                               </MenuItem>
-                              <MenuItem value="Les femmes">Les femmes</MenuItem>
-                              <MenuItem value="Les sportifs">
-                                Les sportifs
+                              <MenuItem value="Régimes alimentaires spécifiques">
+                                Régimes alimentaires spécifiques
                               </MenuItem>
-                              <MenuItem value="la grossesse et l'allaitement">
-                                la grossesse et l'allaitement
+                              <MenuItem value="Suppléments nutritionnels naturels">
+                                Suppléments nutritionnels naturels
+                              </MenuItem>
+                              <MenuItem value="Problèmes de santé spécifiques">
+                                Problèmes de santé spécifiques
                               </MenuItem>
                             </Select>
                           </FormControl>
                         </Box>
-
                         <Box
                           sx={{
                             backgroundColor: theme.palette.primary[600],
@@ -369,11 +390,11 @@ const LifestyleEditScreen = () => {
                             <TextField
                               fullWidth
                               type="text"
-                              label="Introduction"
-                              value={introduction}
+                              label="Description"
+                              value={desc}
                               multiline
                               rows={20}
-                              onChange={(e) => setIntroduction(e.target.value)}
+                              onChange={(e) => setDesc(e.target.value)}
                               required
                               sx={{ gridColumn: "span 2" }}
                             />
@@ -388,7 +409,7 @@ const LifestyleEditScreen = () => {
                                   Previsualisateur de Markdown
                                 </Typography>
                               </Box>
-                              <ReactMarkdown>{introduction}</ReactMarkdown>
+                              <ReactMarkdown>{desc}</ReactMarkdown>
                             </Box>
                             <Box sx={{ gridColumn: "span 4" }}>
                               <Box
@@ -452,6 +473,32 @@ const LifestyleEditScreen = () => {
                               </Box>
                             </Box>
 
+                            <TextField
+                              fullWidth
+                              type="text"
+                              label="Role"
+                              value={role}
+                              multiline
+                              rows={20}
+                              onChange={(e) => setRole(e.target.value)}
+                              required
+                              sx={{ gridColumn: "span 3" }}
+                            />
+
+                            <Box sx={{ gridColumn: "span 1" }}>
+                              <Box
+                                textAlign={"center"}
+                                backgroundColor={theme.palette.primary.main}
+                                p="8px"
+                                mb="20px"
+                              >
+                                <Typography varaint="h4">
+                                  Previsualisateur de Markdown
+                                </Typography>
+                              </Box>
+                              <ReactMarkdown>{role}</ReactMarkdown>
+                            </Box>
+
                             <Box sx={{ gridColumn: "span 4" }}>
                               <Box
                                 mt="10px"
@@ -467,28 +514,30 @@ const LifestyleEditScreen = () => {
                                     varaint="h3"
                                     textTransform={"uppercase"}
                                   >
-                                    Contenues
+                                    Les types
                                   </Typography>
                                 </Box>
                                 <Box p="20px">
                                   <List>
-                                    {sections.map((section, index) => (
+                                    {exemple.map((exemples, index) => (
                                       <ListItem
-                                        key={section}
+                                        key={exemples}
                                         button
-                                        selected={selectedRecette === section}
+                                        selected={selectedRecette === exemples}
                                         onClick={() =>
-                                          handleSectionClick(section)
+                                          handleExempleClick(exemples)
                                         }
                                       >
-                                        <ListItemText primary={section.titre} />
+                                        <ListItemText
+                                          primary={exemples.titre}
+                                        />
                                         <ListItemSecondaryAction>
                                           <Stack direction="row" spacing={1}>
                                             <IconButton
                                               edge="end"
                                               aria-label="delete"
                                               onClick={() =>
-                                                handleDeleteSection(section)
+                                                handleDeleteExemple(exemples)
                                               }
                                             >
                                               <Delete />
@@ -507,68 +556,165 @@ const LifestyleEditScreen = () => {
                                           disabled
                                         />
                                         <TextField
-                                          label="Contenu sélectionné"
-                                          value={selectedRecipe.contenu}
+                                          label="Exemples sélectionné"
+                                          value={selectedRecipe.type}
                                           disabled
                                         />
-                                        <Box
-                                          display="grid"
-                                          gap="15px"
-                                          gridTemplateColumns="repeat(4, minmax(0, 1fr))"
-                                          sx={{
-                                            "& > div": {
-                                              gridColumn: isNonMobile
-                                                ? undefined
-                                                : "span 4",
-                                            },
-                                          }}
-                                        >
-                                          <TextField
-                                            label="Nouveau Titre"
-                                            value={newTitre}
-                                            onChange={(e) =>
-                                              setNewTitre(e.target.value)
+                                        <TextField
+                                          label="Exeplications sélectionné"
+                                          value={selectedRecipe.expli}
+                                          disabled
+                                        />
+                                        <TextField
+                                          label="Bienfait sélectionné"
+                                          value={selectedRecipe.bienfait}
+                                          disabled
+                                        />
+                                        <TextField
+                                          label="mode de conso sélectionné"
+                                          value={selectedRecipe.mode}
+                                          disabled
+                                        />
+                                      </Stack>
+                                      <Box
+                                        display="grid"
+                                        gap="15px"
+                                        gridTemplateColumns="repeat(4, minmax(0, 1fr))"
+                                        sx={{
+                                          "& > div": {
+                                            gridColumn: isNonMobile
+                                              ? undefined
+                                              : "span 4",
+                                          },
+                                        }}
+                                      >
+                                        <TextField
+                                          label="Nouveau Type"
+                                          value={newTitre}
+                                          onChange={(e) =>
+                                            setNewTitre(e.target.value)
+                                          }
+                                          sx={{ gridColumn: "span 4" }}
+                                        />
+                                        <TextField
+                                          label="Nouveau Exemple"
+                                          value={newType}
+                                          multiline
+                                          rows={3}
+                                          onChange={(e) =>
+                                            setNewType(e.target.value)
+                                          }
+                                          sx={{ gridColumn: "span 3" }}
+                                        />
+                                        <Box sx={{ gridColumn: "span 1" }}>
+                                          <Box
+                                            textAlign={"center"}
+                                            backgroundColor={
+                                              theme.palette.primary.main
                                             }
-                                            sx={{ gridColumn: "span 4" }}
-                                          />
-                                          <TextField
-                                            label="Nouveau Contenu"
-                                            value={newContenu}
-                                            multiline
-                                            rows={16}
-                                            onChange={(e) =>
-                                              setNewContenu(e.target.value)
-                                            }
-                                            sx={{ gridColumn: "span 3" }}
-                                          />
-                                          <Box sx={{ gridColumn: "span 1" }}>
-                                            <Box
-                                              textAlign={"center"}
-                                              backgroundColor={
-                                                theme.palette.primary.main
-                                              }
-                                              p="8px"
-                                              mb="20px"
-                                            >
-                                              <Typography varaint="h4">
-                                                Previsualisateur de Markdown
-                                              </Typography>
-                                            </Box>
-                                            <ReactMarkdown>
-                                              {newContenu}
-                                            </ReactMarkdown>
+                                            p="8px"
+                                            mb="20px"
+                                          >
+                                            <Typography varaint="h4">
+                                              Previsualisateur de Markdown
+                                            </Typography>
                                           </Box>
+                                          <ReactMarkdown>
+                                            {newType}
+                                          </ReactMarkdown>
                                         </Box>
-
+                                        <TextField
+                                          label="Nouvelle Explication"
+                                          value={newExpli}
+                                          multiline
+                                          rows={3}
+                                          onChange={(e) =>
+                                            setNewExpli(e.target.value)
+                                          }
+                                          sx={{ gridColumn: "span 3" }}
+                                        />
+                                        <Box sx={{ gridColumn: "span 1" }}>
+                                          <Box
+                                            textAlign={"center"}
+                                            backgroundColor={
+                                              theme.palette.primary.main
+                                            }
+                                            p="8px"
+                                            mb="20px"
+                                          >
+                                            <Typography varaint="h4">
+                                              Previsualisateur de Markdown
+                                            </Typography>
+                                          </Box>
+                                          <ReactMarkdown>
+                                            {newExpli}
+                                          </ReactMarkdown>
+                                        </Box>
+                                        <TextField
+                                          label="Nouveau Bienfait"
+                                          value={newBienfait}
+                                          multiline
+                                          rows={3}
+                                          onChange={(e) =>
+                                            setNewBienfait(e.target.value)
+                                          }
+                                          sx={{ gridColumn: "span 3" }}
+                                        />
+                                        <Box sx={{ gridColumn: "span 1" }}>
+                                          <Box
+                                            textAlign={"center"}
+                                            backgroundColor={
+                                              theme.palette.primary.main
+                                            }
+                                            p="8px"
+                                            mb="20px"
+                                          >
+                                            <Typography varaint="h4">
+                                              Previsualisateur de Markdown
+                                            </Typography>
+                                          </Box>
+                                          <ReactMarkdown>
+                                            {newBienfait}
+                                          </ReactMarkdown>
+                                        </Box>
+                                        <TextField
+                                          label="Nouveau Mode de Consomation"
+                                          value={newMode}
+                                          multiline
+                                          rows={3}
+                                          onChange={(e) =>
+                                            setNewMode(e.target.value)
+                                          }
+                                          sx={{ gridColumn: "span 3" }}
+                                        />
+                                        <Box sx={{ gridColumn: "span 1" }}>
+                                          <Box
+                                            textAlign={"center"}
+                                            backgroundColor={
+                                              theme.palette.primary.main
+                                            }
+                                            p="8px"
+                                            mb="20px"
+                                          >
+                                            <Typography varaint="h4">
+                                              Previsualisateur de Markdown
+                                            </Typography>
+                                          </Box>
+                                          <ReactMarkdown>
+                                            {newMode}
+                                          </ReactMarkdown>
+                                        </Box>
                                         <Button
+                                          sx={{ gridColumn: "span 4" }}
+                                          fullWidth
                                           variant="contained"
                                           color="primary"
-                                          onClick={handleEditSections}
+                                          onClick={handleEditRecette}
                                           startIcon={<Edit />}
                                         >
                                           Modifier
                                         </Button>
-                                      </Stack>
+                                      </Box>
                                     </Box>
                                   )}
                                   {!editingRecette && (
@@ -595,12 +741,12 @@ const LifestyleEditScreen = () => {
                                             sx={{ gridColumn: "span 4" }}
                                           />
                                           <TextField
-                                            label="Nouveau Contenu"
-                                            value={newContenuName}
+                                            label="Nouveau Type"
+                                            value={newTypeName}
                                             multiline
-                                            rows={16}
+                                            rows={3}
                                             onChange={(e) =>
-                                              setNewContenuName(e.target.value)
+                                              setNewTypeName(e.target.value)
                                             }
                                             sx={{ gridColumn: "span 3" }}
                                           />
@@ -618,25 +764,116 @@ const LifestyleEditScreen = () => {
                                               </Typography>
                                             </Box>
                                             <ReactMarkdown>
-                                              {newContenuName}
+                                              {newTypeName}
+                                            </ReactMarkdown>
+                                          </Box>
+                                          <TextField
+                                            label="Nouvelle Explication"
+                                            value={newExpliName}
+                                            multiline
+                                            rows={3}
+                                            onChange={(e) =>
+                                              setNewExpliName(e.target.value)
+                                            }
+                                            sx={{ gridColumn: "span 3" }}
+                                          />
+                                          <Box sx={{ gridColumn: "span 1" }}>
+                                            <Box
+                                              textAlign={"center"}
+                                              backgroundColor={
+                                                theme.palette.primary.main
+                                              }
+                                              p="8px"
+                                              mb="20px"
+                                            >
+                                              <Typography varaint="h4">
+                                                Previsualisateur de Markdown
+                                              </Typography>
+                                            </Box>
+                                            <ReactMarkdown>
+                                              {newExpliName}
+                                            </ReactMarkdown>
+                                          </Box>
+                                          <TextField
+                                            label="Nouveau Bienfait"
+                                            value={newBienfaitName}
+                                            multiline
+                                            rows={3}
+                                            onChange={(e) =>
+                                              setNewBienfaitName(e.target.value)
+                                            }
+                                            sx={{ gridColumn: "span 3" }}
+                                          />
+                                          <Box sx={{ gridColumn: "span 1" }}>
+                                            <Box
+                                              textAlign={"center"}
+                                              backgroundColor={
+                                                theme.palette.primary.main
+                                              }
+                                              p="8px"
+                                              mb="20px"
+                                            >
+                                              <Typography varaint="h4">
+                                                Previsualisateur de Markdown
+                                              </Typography>
+                                            </Box>
+                                            <ReactMarkdown>
+                                              {newBienfaitName}
+                                            </ReactMarkdown>
+                                          </Box>
+                                          <TextField
+                                            label="Nouveau Mode de Consomation"
+                                            value={newModeName}
+                                            multiline
+                                            rows={3}
+                                            onChange={(e) =>
+                                              setNewModeName(e.target.value)
+                                            }
+                                            sx={{ gridColumn: "span 3" }}
+                                          />
+                                          <Box sx={{ gridColumn: "span 1" }}>
+                                            <Box
+                                              textAlign={"center"}
+                                              backgroundColor={
+                                                theme.palette.primary.main
+                                              }
+                                              p="8px"
+                                              mb="20px"
+                                            >
+                                              <Typography varaint="h4">
+                                                Previsualisateur de Markdown
+                                              </Typography>
+                                            </Box>
+                                            <ReactMarkdown>
+                                              {newModeName}
                                             </ReactMarkdown>
                                           </Box>
                                         </Box>
                                         <Button
                                           variant="contained"
                                           color="primary"
-                                          sx={{ gridColumn: "span 4" }}
+                                          sx={{
+                                            gridColumn: "span 4",
+                                            mt: "1rem",
+                                          }}
+                                          fullWidth
                                           onClick={() => {
-                                            setSections([
-                                              ...sections,
+                                            setExemples([
+                                              ...exemple,
                                               {
                                                 titre: newTitreName,
-                                                contenu: newContenuName,
+                                                type: newTypeName,
+                                                expli: newExpliName,
+                                                bienfait: newBienfaitName,
+                                                mode: newModeName,
                                               },
                                             ]);
                                             setEditingRecette(false);
                                             setNewTitreName("");
-                                            setNewContenuName("");
+                                            setNewTypeName("");
+                                            setNewExpliName("");
+                                            setNewBienfaitName("");
+                                            setNewModeName("");
                                           }}
                                           startIcon={<Add />}
                                         >
@@ -656,7 +893,7 @@ const LifestyleEditScreen = () => {
                               value={conclusion}
                               multiline
                               rows={20}
-                              onChange={(e) => setConclusion(e.target.value)}
+                              onChange={(e) => setConclusions(e.target.value)}
                               required
                               sx={{ gridColumn: "span 3" }}
                             />
@@ -702,4 +939,4 @@ const LifestyleEditScreen = () => {
   );
 };
 
-export default LifestyleEditScreen;
+export default AdminModifierNutrition;

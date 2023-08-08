@@ -80,7 +80,7 @@ const PopulaireEditScreeen = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     if (successUpdate) {
-      navigate("/nutritions");
+      navigate("/nutrition");
     }
     if (!populaire || populaire._id !== populaireId || successUpdate) {
       dispatch({ type: POPULAIRE_UPDATE_RESET });
@@ -365,7 +365,7 @@ const PopulaireEditScreeen = () => {
                                     3. Élément 3
                                   </Typography>
                                   <Typography variant="body2">
-                                    - Citation :  Ceci est une citation.
+                                    - Citation : Ceci est une citation.
                                   </Typography>
                                   <Typography variant="body2">
                                     - Bloc de code : ```javascript const exemple

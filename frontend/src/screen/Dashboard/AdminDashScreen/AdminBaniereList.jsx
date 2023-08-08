@@ -1,4 +1,15 @@
-import { useTheme } from "@emotion/react";
+import React, { useEffect, useState } from "react";
+import {
+  createBanner,
+  deleteBanner,
+  listBanners,
+} from "../../../actions/bannerActions";
+import {
+  BANNER_CREATE_RESET,
+  BANNER_DELETE_RESET,
+} from "../../../constants/bannerConstant";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import {
   Avatar,
   Box,
@@ -10,60 +21,48 @@ import {
   Typography,
   useMediaQuery,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { Helmet } from "react-helmet-async";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import {
-  createPopulaire,
-  deletePopulaire,
-  listPopulaires,
-} from "../../../actions/Blog/populaireAction";
-import Chargement from "../../../Components/Chargement";
+import { useTheme } from "@emotion/react";
 import FlexBetween from "../../../Components/FlexBetween";
+import Chargement from "../../../Components/Chargement";
 import MessageBox from "../../../Components/MessageBox";
-import {
-  POPULAIRE_CREATE_RESET,
-  POPULAIRE_DELETE_RESET,
-} from "../../../constants/Blog/populaireConstants";
 import Header from "../../../Components/Header";
+import { Helmet } from "react-helmet-async";
 
-const PopulaireDashScreen = () => {
+const AdminBaniereList = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const theme = useTheme();
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const navigate = useNavigate();
 
-  const populairesList = useSelector((state) => state.populairesList);
-  const { loading, error, populaires } = populairesList;
-  const populaireCreate = useSelector((state) => state.populaireCreate);
+  const bannersList = useSelector((state) => state.bannersList);
+  const { loading, error, banners } = bannersList;
+  const bannerCreate = useSelector((state) => state.bannerCreate);
   const {
     loading: loadingCreate,
     error: errorCreate,
     success: successCreate,
-    populaire: createdPopulaire,
-  } = populaireCreate;
+    banner: createdBanner,
+  } = bannerCreate;
 
-  const populaireDelete = useSelector((state) => state.populaireDelete);
+  const bannerDelete = useSelector((state) => state.bannerDelete);
   const {
     loading: loadingDelete,
     error: errorDelete,
     success: successDelete,
-  } = populaireDelete;
+  } = bannerDelete;
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
   const dispatch = useDispatch();
   useEffect(() => {
     if (successCreate) {
-      dispatch({ type: POPULAIRE_CREATE_RESET });
-      navigate(`/nutritions/${createdPopulaire._id}/edit`);
+      dispatch({ type: BANNER_CREATE_RESET });
     }
     if (successDelete) {
-      dispatch({ type: POPULAIRE_DELETE_RESET });
+      dispatch({ type: BANNER_DELETE_RESET });
     }
-    dispatch(listPopulaires());
+    dispatch(listBanners());
   }, [
-    createdPopulaire,
+    createdBanner,
     dispatch,
     navigate,
     successCreate,
@@ -71,23 +70,24 @@ const PopulaireDashScreen = () => {
     userInfo._id,
   ]);
 
-  const deleteHandler = (populaire) => {
+  const deleteHandler = (banner) => {
     if (window.confirm("Are you sure to delete?")) {
-      dispatch(deletePopulaire(populaire._id));
+      dispatch(deleteBanner(banner._id));
     }
   };
   const createHandler = () => {
-    dispatch(createPopulaire());
+    dispatch(createBanner());
   };
   return (
     <>
       <Helmet>
-        <title>Nutrition Naturelle</title>
+        <title>Le carrouselle principal</title>
       </Helmet>
+
       <Box m="1.5rem 2.5rem">
         <Header
-          title="NUTRITIONS"
-          subtitle="La liste des articles sur la nutrition naturelle"
+          title="CAROUSSELLE"
+          subtitle="Liste des donnees pour le carousselle principale"
         />
         {loadingDelete && <Chargement />}
         {errorDelete && <MessageBox severity="error">{errorDelete}</MessageBox>}
@@ -127,7 +127,7 @@ const PopulaireDashScreen = () => {
                     padding: "10px 20px",
                   }}
                 >
-                  Ajouter un article nutrition naturelle
+                  Ajouter une nouvelle Banniere
                 </Button>
               </Box>
             </Box>
@@ -142,7 +142,7 @@ const PopulaireDashScreen = () => {
                 "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
               }}
             >
-              {populaires.map((populaire) => (
+              {banners.map((banner) => (
                 <>
                   <Card
                     sx={{
@@ -150,7 +150,7 @@ const PopulaireDashScreen = () => {
                       backgroundColor: theme.palette.background.alt,
                       borderRadius: "0.55rem",
                     }}
-                    key={populaire._id}
+                    key={banner._id}
                   >
                     <CardContent>
                       <Typography
@@ -158,14 +158,14 @@ const PopulaireDashScreen = () => {
                         color={theme.palette.secondary[700]}
                         gutterBottom
                       >
-                        {populaire.sousCategorie}
+                        {banner.catgeory}
                       </Typography>
                       <FlexBetween>
                         <Typography variant="h5" component="div">
-                          {populaire.title}
+                          {banner.title}
                         </Typography>
                         <Avatar
-                          src={populaire.cover}
+                          src={banner.cover}
                           sx={{
                             width: 70,
                             height: 70,
@@ -191,12 +191,8 @@ const PopulaireDashScreen = () => {
                       }}
                     >
                       <CardContent>
-                        <Typography>id: {populaire._id}</Typography>
-                        <Box>
-                          <Typography>
-                            {populaire.desc.slice(0, 70)}...
-                          </Typography>
-                        </Box>
+                        <Typography>id: {banner._id}</Typography>
+
                         <FlexBetween
                           sx={{
                             backgroundColor: theme.palette.primary[700],
@@ -208,7 +204,7 @@ const PopulaireDashScreen = () => {
                             variant="primary"
                             size="small"
                             onClick={() =>
-                              navigate(`/populaire/${populaire._id}/edit`)
+                              navigate(`/banieres/${banner._id}/edit`)
                             }
                           >
                             Modifier
@@ -216,7 +212,7 @@ const PopulaireDashScreen = () => {
                           <Button
                             variant="primary"
                             size="small"
-                            onClick={() => deleteHandler(populaire)}
+                            onClick={() => deleteHandler(banner)}
                           >
                             Supprimer
                           </Button>
@@ -234,4 +230,4 @@ const PopulaireDashScreen = () => {
   );
 };
 
-export default PopulaireDashScreen;
+export default AdminBaniereList;

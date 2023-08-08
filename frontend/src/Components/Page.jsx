@@ -61,6 +61,26 @@ import GalerieListScreen from "../screen/Dashboard/Blog/GalerieListScreen";
 import GalerieEditScreen from "../screen/Dashboard/Blog/GalerieEditScreen";
 import LayoutUser from "./Dashboard/UserDash/LayoutUser";
 import PrivateRoute from "./PrivateRoute";
+import LayoutSuperAdmin from "./Dashboard/SuperAdminDash/LayoutSuperAdmin";
+import SuperAdminRouter from "./SuperAdminRouter";
+import AdminProductScreen from "../screen/Dashboard/AdminDashScreen/AdminProductScreen";
+import AdminModifierProductScreen from "../screen/Dashboard/AdminDashScreen/AdminModifierProductScreen";
+import AdminContactListScreen from "../screen/Dashboard/AdminDashScreen/AdminContactListScreen";
+import AdminModifierContactScreen from "../screen/Dashboard/AdminDashScreen/AdminModifierContactScreen";
+import AdminRemedesList from "../screen/Dashboard/AdminDashScreen/AdminRemedesList";
+import AdminModifierRemede from "../screen/Dashboard/AdminDashScreen/AdminModifierRemede";
+import AdminNutritionList from "../screen/Dashboard/AdminDashScreen/AdminNutritionList";
+import AdminModifierNutrition from "../screen/Dashboard/AdminDashScreen/AdminModifierNutrition";
+import AdminSanteList from "../screen/Dashboard/AdminDashScreen/AdminSanteList";
+import AdminModifierSante from "../screen/Dashboard/AdminDashScreen/AdminModifierSante";
+import AdminApitherapieList from "../screen/Dashboard/AdminDashScreen/AdminApitherapieList";
+import AdminModifierApitherapie from "../screen/Dashboard/AdminDashScreen/AdminModifierApitherapie";
+import AdminBaniereList from "../screen/Dashboard/AdminDashScreen/AdminBaniereList";
+import AdmainModifierBanner from "../screen/Dashboard/AdminDashScreen/AdmainModifierBanner";
+import AdminTikTokList from "../screen/Dashboard/AdminDashScreen/AdminTikTokList";
+import AdminModifierTiktok from "../screen/Dashboard/AdminDashScreen/AdminModifierTiktok";
+import AdminGalerieList from "../screen/Dashboard/AdminDashScreen/AdminGalerieList";
+import AdminModifierGalerie from "../screen/Dashboard/AdminDashScreen/AdminModifierGalerie";
 
 const Page = () => {
   return (
@@ -140,6 +160,7 @@ const Page = () => {
             exact
           ></Route>
 
+          {/* Daheboard Utilisateurs */}
           <Route element={<LayoutUser />}>
             <Route
               path="/profile"
@@ -158,10 +179,10 @@ const Page = () => {
               }
             />
           </Route>
-
+          {/* DashboardAdmin */}
           <Route element={<Layout />}>
             <Route
-              path="/dashboard"
+              path="/dashboards"
               element={
                 <AdminRoute>
                   <Dashboard />
@@ -169,15 +190,7 @@ const Page = () => {
               }
             />
             <Route
-              path="/Admins"
-              element={
-                <AdminRoute>
-                  <AdmisListScreen />
-                </AdminRoute>
-              }
-            />
-            <Route
-              path="/Produits"
+              path="/Produit"
               element={
                 <AdminRoute>
                   <ListProduitsScreen />
@@ -185,15 +198,7 @@ const Page = () => {
               }
             />
             <Route
-              path="/Utilisateurs"
-              element={
-                <AdminRoute>
-                  <CustomerEditScreen />
-                </AdminRoute>
-              }
-            />
-            <Route
-              path="/Transactions"
+              path="/Transaction"
               element={
                 <AdminRoute>
                   <Transaction />
@@ -201,7 +206,7 @@ const Page = () => {
               }
             />
             <Route
-              path="/Localisation"
+              path="/Localisations"
               element={
                 <AdminRoute>
                   <GeographyDash />
@@ -209,7 +214,7 @@ const Page = () => {
               }
             />
             <Route
-              path="/Détails"
+              path="/Détail"
               element={
                 <AdminRoute>
                   <BreakdownScreen />
@@ -218,7 +223,7 @@ const Page = () => {
             />
 
             <Route
-              path="/Aperçu"
+              path="/Aperçus"
               element={
                 <AdminRoute>
                   <OverVieuw />
@@ -226,7 +231,7 @@ const Page = () => {
               }
             />
             <Route
-              path="/Journaliere"
+              path="/Journalieres"
               element={
                 <AdminRoute>
                   <VentesScren />
@@ -234,7 +239,7 @@ const Page = () => {
               }
             />
             <Route
-              path="/Mensuelle"
+              path="/Mensuelles"
               element={
                 <AdminRoute>
                   <MonthlyScreen />
@@ -245,20 +250,20 @@ const Page = () => {
               path="/productlist"
               element={
                 <AdminRoute>
-                  <ListProduitsScreen />
+                  <AdminProductScreen />
                 </AdminRoute>
               }
             />
             <Route
-              path="/produits/:id/edit"
+              path="/product/:id/edit"
               element={
                 <AdminRoute>
-                  <ModifierProductScreen />
+                  <AdminModifierProductScreen />
                 </AdminRoute>
               }
             />
             <Route
-              path="/commandes"
+              path="/commande"
               element={
                 <AdminRoute>
                   <CommandeList />
@@ -266,7 +271,7 @@ const Page = () => {
               }
             />
             <Route
-              path="/Assistance"
+              path="/Assistances"
               element={
                 <AdminRoute>
                   <SupportScreen />
@@ -274,82 +279,67 @@ const Page = () => {
               }
             />
             <Route
-              path="/Contacts"
+              path="/Contact"
               element={
                 <AdminRoute>
-                  <ContactListScreen />
+                  <AdminContactListScreen />
                 </AdminRoute>
               }
             />
             <Route
-              path="/contacts/:id"
+              path="/contact/:id"
               element={
                 <AdminRoute>
-                  <ContactEditScreen />
+                  <AdminModifierContactScreen />
                 </AdminRoute>
               }
             />
-            <Route
-              path="/userlist"
-              element={
-                <AdminRoute>
-                  <UserListScreen />
-                </AdminRoute>
-              }
-            />
-            <Route
-              path="/user/:id/edit"
-              element={
-                <AdminRoute>
-                  <UserEditScreen />
-                </AdminRoute>
-              }
-            />
+
             <Route
               path="/Remedes"
               element={
                 <AdminRoute>
-                  <HeroDashScreen />
+                  <AdminRemedesList />
                 </AdminRoute>
               }
             />
             <Route
-              path="/heros/:id/edit"
+              path="/remedes/:id/edit"
               element={
                 <AdminRoute>
-                  <HeroEditScreen />
+                  <AdminModifierRemede />
                 </AdminRoute>
               }
             />
             <Route
-              path="/Nutritions"
+              path="/Nutrition"
               element={
                 <AdminRoute>
-                  <PopulaireDashScreen />
+                  <AdminNutritionList />
                 </AdminRoute>
               }
             />
             <Route
-              path="/populaire/:id/edit"
+              path="/nutritions/:id/edit"
               element={
                 <AdminRoute>
-                  <PopulaireEditScreeen />
+                  <AdminModifierNutrition />
                 </AdminRoute>
               }
             />
             <Route
-              path="/Santé"
+              path="/Santés"
               element={
                 <AdminRoute>
-                  <LifestyleDashScreen />
+                  <AdminSanteList />
                 </AdminRoute>
               }
             />
             <Route
-              path="/lifestyles/:id/edit"
+              path="/Santés/:id/edit"
               element={
                 <AdminRoute>
-                  <LifestyleEditScreen />
+                  <AdminModifierSante />
                 </AdminRoute>
               }
             />
@@ -357,31 +347,31 @@ const Page = () => {
               path="/apitherapie"
               element={
                 <AdminRoute>
-                  <ApitherapieDashScreen />
+                  <AdminApitherapieList />
                 </AdminRoute>
               }
             />
             <Route
-              path="/apitherapies/:id/edit"
+              path="/apitherapie/:id/edit"
               element={
                 <AdminRoute>
-                  <ApitherapieEditScreen />
+                  <AdminModifierApitherapie />
                 </AdminRoute>
               }
             />
             <Route
-              path="/Baniere"
+              path="/Banieres"
               element={
                 <AdminRoute>
-                  <BannerListScreen />
+                  <AdminBaniereList />
                 </AdminRoute>
               }
             />
             <Route
-              path="/TikTok"
+              path="/TikToks"
               element={
                 <AdminRoute>
-                  <TikTokListScreen />
+                  <AdminTikTokList />
                 </AdminRoute>
               }
             />
@@ -389,15 +379,15 @@ const Page = () => {
               path="/tiktoks/:id/edit"
               element={
                 <AdminRoute>
-                  <TikTokEditScreen />
+                  <AdminModifierTiktok />
                 </AdminRoute>
               }
             />
             <Route
-              path="/Galerie"
+              path="/Galeries"
               element={
                 <AdminRoute>
-                  <GalerieListScreen />
+                  <AdminGalerieList />
                 </AdminRoute>
               }
             />
@@ -405,20 +395,279 @@ const Page = () => {
               path="/galeries/:id/edit"
               element={
                 <AdminRoute>
-                  <GalerieEditScreen />
+                  <AdminModifierGalerie />
                 </AdminRoute>
+              }
+            />
+            <Route
+              path="/banieres/:id/edit"
+              element={
+                <AdminRoute>
+                  <AdmainModifierBanner />
+                </AdminRoute>
+              }
+            />
+          </Route>
+          {/* Dashboard SuperAdmin */}
+          <Route element={<LayoutSuperAdmin />}>
+            <Route
+              path="/dashboard"
+              element={
+                <SuperAdminRouter>
+                  <Dashboard />
+                </SuperAdminRouter>
+              }
+            />
+            <Route
+              path="/Admins"
+              element={
+                <SuperAdminRouter>
+                  <AdmisListScreen />
+                </SuperAdminRouter>
+              }
+            />
+            <Route
+              path="/Produits"
+              element={
+                <SuperAdminRouter>
+                  <ListProduitsScreen />
+                </SuperAdminRouter>
+              }
+            />
+            <Route
+              path="/Utilisateurs"
+              element={
+                <SuperAdminRouter>
+                  <CustomerEditScreen />
+                </SuperAdminRouter>
+              }
+            />
+            <Route
+              path="/Transactions"
+              element={
+                <SuperAdminRouter>
+                  <Transaction />
+                </SuperAdminRouter>
+              }
+            />
+            <Route
+              path="/Localisation"
+              element={
+                <SuperAdminRouter>
+                  <GeographyDash />
+                </SuperAdminRouter>
+              }
+            />
+            <Route
+              path="/Détails"
+              element={
+                <SuperAdminRouter>
+                  <BreakdownScreen />
+                </SuperAdminRouter>
+              }
+            />
+
+            <Route
+              path="/Aperçu"
+              element={
+                <SuperAdminRouter>
+                  <OverVieuw />
+                </SuperAdminRouter>
+              }
+            />
+            <Route
+              path="/Journaliere"
+              element={
+                <SuperAdminRouter>
+                  <VentesScren />
+                </SuperAdminRouter>
+              }
+            />
+            <Route
+              path="/Mensuelle"
+              element={
+                <SuperAdminRouter>
+                  <MonthlyScreen />
+                </SuperAdminRouter>
+              }
+            />
+            <Route
+              path="/productlist"
+              element={
+                <SuperAdminRouter>
+                  <ListProduitsScreen />
+                </SuperAdminRouter>
+              }
+            />
+            <Route
+              path="/produits/:id/edit"
+              element={
+                <SuperAdminRouter>
+                  <ModifierProductScreen />
+                </SuperAdminRouter>
+              }
+            />
+            <Route
+              path="/commandes"
+              element={
+                <SuperAdminRouter>
+                  <CommandeList />
+                </SuperAdminRouter>
+              }
+            />
+            <Route
+              path="/Assistance"
+              element={
+                <SuperAdminRouter>
+                  <SupportScreen />
+                </SuperAdminRouter>
+              }
+            />
+            <Route
+              path="/Contacts"
+              element={
+                <SuperAdminRouter>
+                  <ContactListScreen />
+                </SuperAdminRouter>
+              }
+            />
+            <Route
+              path="/contacts/:id"
+              element={
+                <SuperAdminRouter>
+                  <ContactEditScreen />
+                </SuperAdminRouter>
+              }
+            />
+            <Route
+              path="/userlist"
+              element={
+                <SuperAdminRouter>
+                  <UserListScreen />
+                </SuperAdminRouter>
+              }
+            />
+            <Route
+              path="/user/:id/edit"
+              element={
+                <SuperAdminRouter>
+                  <UserEditScreen />
+                </SuperAdminRouter>
+              }
+            />
+            <Route
+              path="/Remedes"
+              element={
+                <SuperAdminRouter>
+                  <HeroDashScreen />
+                </SuperAdminRouter>
+              }
+            />
+            <Route
+              path="/heros/:id/edit"
+              element={
+                <SuperAdminRouter>
+                  <HeroEditScreen />
+                </SuperAdminRouter>
+              }
+            />
+            <Route
+              path="/Nutritions"
+              element={
+                <SuperAdminRouter>
+                  <PopulaireDashScreen />
+                </SuperAdminRouter>
+              }
+            />
+            <Route
+              path="/populaire/:id/edit"
+              element={
+                <SuperAdminRouter>
+                  <PopulaireEditScreeen />
+                </SuperAdminRouter>
+              }
+            />
+            <Route
+              path="/Santé"
+              element={
+                <SuperAdminRouter>
+                  <LifestyleDashScreen />
+                </SuperAdminRouter>
+              }
+            />
+            <Route
+              path="/lifestyles/:id/edit"
+              element={
+                <SuperAdminRouter>
+                  <LifestyleEditScreen />
+                </SuperAdminRouter>
+              }
+            />
+            <Route
+              path="/apitherapie"
+              element={
+                <SuperAdminRouter>
+                  <ApitherapieDashScreen />
+                </SuperAdminRouter>
+              }
+            />
+            <Route
+              path="/apitherapies/:id/edit"
+              element={
+                <SuperAdminRouter>
+                  <ApitherapieEditScreen />
+                </SuperAdminRouter>
+              }
+            />
+            <Route
+              path="/Baniere"
+              element={
+                <SuperAdminRouter>
+                  <BannerListScreen />
+                </SuperAdminRouter>
+              }
+            />
+            <Route
+              path="/TikTok"
+              element={
+                <SuperAdminRouter>
+                  <TikTokListScreen />
+                </SuperAdminRouter>
+              }
+            />
+            <Route
+              path="/tiktoks/:id/edit"
+              element={
+                <SuperAdminRouter>
+                  <TikTokEditScreen />
+                </SuperAdminRouter>
+              }
+            />
+            <Route
+              path="/Galerie"
+              element={
+                <SuperAdminRouter>
+                  <GalerieListScreen />
+                </SuperAdminRouter>
+              }
+            />
+            <Route
+              path="/galeries/:id/edit"
+              element={
+                <SuperAdminRouter>
+                  <GalerieEditScreen />
+                </SuperAdminRouter>
               }
             />
             <Route
               path="/banners/:id/edit"
               element={
-                <AdminRoute>
+                <SuperAdminRouter>
                   <BannerEditScreen />
-                </AdminRoute>
+                </SuperAdminRouter>
               }
             />
           </Route>
-
           <Route
             path="/productlist/seller"
             element={

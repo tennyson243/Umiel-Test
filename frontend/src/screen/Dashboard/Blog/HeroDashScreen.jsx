@@ -20,7 +20,6 @@ import {
   listHeros,
 } from "../../../actions/Blog/heroActions";
 import Chargement from "../../../Components/Chargement";
-import EnTete from "../../../Components/EnTete";
 import FlexBetween from "../../../Components/FlexBetween";
 import MessageBox from "../../../Components/MessageBox";
 import {
@@ -57,7 +56,7 @@ const HeroDashScreen = () => {
   useEffect(() => {
     if (successCreate) {
       dispatch({ type: HERO_CREATE_RESET });
-      navigate(`/heros/${createdHero._id}/edit`);
+      navigate(`/remedes/${createdHero._id}/edit`);
     }
     if (successDelete) {
       dispatch({ type: HERO_DELETE_RESET });

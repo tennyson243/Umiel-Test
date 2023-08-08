@@ -1,4 +1,15 @@
-import { useTheme } from "@emotion/react";
+import React, { useEffect, useState } from "react";
+import {
+  createTiktok,
+  deleteTiktok,
+  listTiktoks,
+} from "../../../actions/Blog/tiktokActions";
+import {
+  TIKTOK_CREATE_RESET,
+  TIKTOK_DELETE_RESET,
+} from "../../../constants/Blog/tiktokConstants";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import {
   Avatar,
   Box,
@@ -10,61 +21,49 @@ import {
   Typography,
   useMediaQuery,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import {
-  APITHERAPIE_CREATE_RESET,
-  APITHERAPIE_DELETE_RESET,
-} from "../../../constants/Blog/ApitherapieConstant";
-import {
-  createApitherapie,
-  deleteApitherapie,
-  listApitherapie,
-} from "../../../actions/Blog/apitherapieActions";
-import { Helmet } from "react-helmet-async";
-import Chargement from "../../../Components/Chargement";
-import MessageBox from "../../../Components/MessageBox";
+import { useTheme } from "@emotion/react";
 import FlexBetween from "../../../Components/FlexBetween";
+import MessageBox from "../../../Components/MessageBox";
+import Chargement from "../../../Components/Chargement";
 import Header from "../../../Components/Header";
+import { Helmet } from "react-helmet-async";
 
-const ApitherapieDashScreen = () => {
+const AdminTikTokList = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const theme = useTheme();
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const navigate = useNavigate();
 
-  const apitherapiesList = useSelector((state) => state.apitherapiesList);
-  const { loading, error, apitherapies } = apitherapiesList;
-  const apitherapieCreate = useSelector((state) => state.apitherapieCreate);
+  const tiktoksList = useSelector((state) => state.tiktoksList);
+  const { loading, error, tiktoks } = tiktoksList;
+  const tiktokCreate = useSelector((state) => state.tiktokCreate);
   const {
     loading: loadingCreate,
     error: errorCreate,
     success: successCreate,
-    apitherapie: createdApitherapie,
-  } = apitherapieCreate;
+    tiktok: createdTiktok,
+  } = tiktokCreate;
 
-  const apitherapieDelete = useSelector((state) => state.apitherapieDelete);
+  const tiktokDelete = useSelector((state) => state.tiktokDelete);
   const {
     loading: loadingDelete,
     error: errorDelete,
     success: successDelete,
-  } = apitherapieDelete;
+  } = tiktokDelete;
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (successCreate) {
-      dispatch({ type: APITHERAPIE_CREATE_RESET });
-      navigate(`/apitherapies/${createdApitherapie._id}/edit`);
+      dispatch({ type: TIKTOK_CREATE_RESET });
     }
     if (successDelete) {
-      dispatch({ type: APITHERAPIE_DELETE_RESET });
+      dispatch({ type: TIKTOK_DELETE_RESET });
     }
-    dispatch(listApitherapie());
+    dispatch(listTiktoks());
   }, [
-    createdApitherapie,
+    createdTiktok,
     dispatch,
     navigate,
     successCreate,
@@ -72,24 +71,25 @@ const ApitherapieDashScreen = () => {
     userInfo._id,
   ]);
 
-  const deleteHandler = (apitherapie) => {
+  const deleteHandler = (tiktok) => {
     if (window.confirm("Are you sure to delete?")) {
-      dispatch(deleteApitherapie(apitherapie._id));
+      dispatch(deleteTiktok(tiktok._id));
     }
   };
   const createHandler = () => {
-    dispatch(createApitherapie());
+    dispatch(createTiktok());
   };
   return (
     <>
       <>
         <Helmet>
-          <title>Les articles Apitherapie</title>
+          <title>Le Tiktok post</title>
         </Helmet>
+
         <Box m="1.5rem 2.5rem">
           <Header
-            title="APITHERAPIE"
-            subtitle="La liste des articles sur l'Apitherapie"
+            title="TIKTOK POST"
+            subtitle="Liste des publications TikTok"
           />
           {loadingDelete && <Chargement />}
           {errorDelete && (
@@ -133,7 +133,7 @@ const ApitherapieDashScreen = () => {
                       padding: "10px 20px",
                     }}
                   >
-                    Ajouter un article Apitherapie
+                    Ajouter un tiktok post
                   </Button>
                 </Box>
               </Box>
@@ -148,7 +148,7 @@ const ApitherapieDashScreen = () => {
                   "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
                 }}
               >
-                {apitherapies.map((apitherapie) => (
+                {tiktoks.map((tiktok) => (
                   <>
                     <Card
                       sx={{
@@ -156,7 +156,7 @@ const ApitherapieDashScreen = () => {
                         backgroundColor: theme.palette.background.alt,
                         borderRadius: "0.55rem",
                       }}
-                      key={apitherapie._id}
+                      key={tiktok._id}
                     >
                       <CardContent>
                         <Typography
@@ -164,14 +164,14 @@ const ApitherapieDashScreen = () => {
                           color={theme.palette.secondary[700]}
                           gutterBottom
                         >
-                          {apitherapie.sousCategorie}
+                          {tiktok.catgeory}
                         </Typography>
                         <FlexBetween>
                           <Typography variant="h5" component="div">
-                            {apitherapie.title}
+                            {tiktok.title}
                           </Typography>
                           <Avatar
-                            src={apitherapie.cover}
+                            src={tiktok.cover}
                             sx={{
                               width: 70,
                               height: 70,
@@ -197,7 +197,7 @@ const ApitherapieDashScreen = () => {
                         }}
                       >
                         <CardContent>
-                          <Typography>id: {apitherapie._id}</Typography>
+                          <Typography>id: {tiktok._id}</Typography>
 
                           <FlexBetween
                             sx={{
@@ -210,9 +210,7 @@ const ApitherapieDashScreen = () => {
                               variant="primary"
                               size="small"
                               onClick={() =>
-                                navigate(
-                                  `/apitherapies/${apitherapie._id}/edit`
-                                )
+                                navigate(`/tiktoks/${tiktok._id}/edit`)
                               }
                             >
                               Modifier
@@ -220,7 +218,7 @@ const ApitherapieDashScreen = () => {
                             <Button
                               variant="primary"
                               size="small"
-                              onClick={() => deleteHandler(apitherapie)}
+                              onClick={() => deleteHandler(tiktok)}
                             >
                               Supprimer
                             </Button>
@@ -239,4 +237,4 @@ const ApitherapieDashScreen = () => {
   );
 };
 
-export default ApitherapieDashScreen;
+export default AdminTikTokList;

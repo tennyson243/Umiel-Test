@@ -1,4 +1,30 @@
-import React from "react";
+import { useTheme } from "@emotion/react";
+import {
+  AdminPanelSettingsOutlined,
+  Beenhere,
+  CalendarMonthOutlined,
+  ChevronLeft,
+  ChevronRightOutlined,
+  ContactEmergency,
+  Flag,
+  Groups2Outlined,
+  HomeOutlined,
+  IntegrationInstructionsSharp,
+  MusicNote,
+  OutlinedFlagRounded,
+  PictureAsPdf,
+  PieChartOutlined,
+  PointOfSaleOutlined,
+  PublicOutlined,
+  ReceiptLongOutlined,
+  SettingsOutlined,
+  Shop2TwoTone,
+  ShoppingCartOutlined,
+  SupportAgent,
+  TodayOutlined,
+  TrendingUpOutlined,
+} from "@mui/icons-material";
+import GradeIcon from "@mui/icons-material/Grade";
 import {
   Box,
   Divider,
@@ -10,41 +36,14 @@ import {
   ListItemIcon,
   ListItemText,
   Typography,
-  useTheme,
 } from "@mui/material";
-import {
-  SettingsOutlined,
-  ChevronLeft,
-  ChevronRightOutlined,
-  HomeOutlined,
-  ShoppingCartOutlined,
-  Groups2Outlined,
-  ReceiptLongOutlined,
-  PublicOutlined,
-  PointOfSaleOutlined,
-  TodayOutlined,
-  CalendarMonthOutlined,
-  AdminPanelSettingsOutlined,
-  TrendingUpOutlined,
-  PieChartOutlined,
-  OutlinedFlagRounded,
-  IntegrationInstructionsSharp,
-  Flag,
-  Shop2TwoTone,
-  SupportAgent,
-  ContactEmergency,
-  MusicNote,
-  PictureAsPdf,
-} from "@mui/icons-material";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import FlexBetween from "../FlexBetween";
-import GradeIcon from "@mui/icons-material/Grade";
-import { Beenhere } from "@mui/icons-material";
+import FlexBetween from "../../FlexBetween";
 
 const navItems = [
   {
-    text: "Dashboards",
+    text: "Dashboard",
     icon: <HomeOutlined />,
   },
   {
@@ -52,19 +51,23 @@ const navItems = [
     icon: null,
   },
   {
-    text: "Produit",
+    text: "Produits",
     icon: <ShoppingCartOutlined />,
   },
   {
-    text: "Commande",
+    text: "Utilisateurs",
+    icon: <Groups2Outlined />,
+  },
+  {
+    text: "Commandes",
     icon: <Shop2TwoTone />,
   },
   {
-    text: "Transaction",
+    text: "Transactions",
     icon: <ReceiptLongOutlined />,
   },
   {
-    text: "Localisations",
+    text: "Localisation",
     icon: <PublicOutlined />,
   },
   {
@@ -72,56 +75,59 @@ const navItems = [
     icon: null,
   },
   {
-    text: "Aperçus",
+    text: "Aperçu",
     icon: <PointOfSaleOutlined />,
   },
   {
-    text: "Journalieres",
+    text: "Journaliere",
     icon: <TodayOutlined />,
   },
   {
-    text: "Mensuelles",
+    text: "Mensuelle",
     icon: <CalendarMonthOutlined />,
   },
   {
-    text: "Détail",
+    text: "Détails",
     icon: <PieChartOutlined />,
   },
   {
-    text: "Blogs",
+    text: "Blog",
     icon: null,
   },
   {
-    text: "Remede",
+    text: "Remedes",
     icon: <OutlinedFlagRounded />,
   },
   {
-    text: "Nutrition",
+    text: "Nutritions",
     icon: <GradeIcon />,
   },
   {
-    text: "Santés",
+    text: "Santé",
     icon: <IntegrationInstructionsSharp />,
   },
   {
-    text: "Apitherapies",
+    text: "Apitherapie",
     icon: <Beenhere />,
   },
   {
-    text: "TikToks",
+    text: "TikTok",
     icon: <MusicNote />,
   },
   {
-    text: "Galeries",
+    text: "Galerie",
     icon: <PictureAsPdf />,
   },
   {
     text: "Gestion",
     icon: null,
   },
-
   {
-    text: "Performances",
+    text: "Admins",
+    icon: <AdminPanelSettingsOutlined />,
+  },
+  {
+    text: "Performance",
     icon: <TrendingUpOutlined />,
   },
   {
@@ -137,7 +143,7 @@ const navItems = [
     icon: <ContactEmergency />,
   },
 ];
-const Sidebar = ({
+const SiderBarSuperAdmin = ({
   user,
   drawerWidth,
   isSidebarOpen,
@@ -152,7 +158,6 @@ const Sidebar = ({
   useEffect(() => {
     setActive(pathname.substring(1));
   }, [pathname]);
-
   return (
     <Box component="nav">
       {isSidebarOpen && (
@@ -279,4 +284,4 @@ const Sidebar = ({
   );
 };
 
-export default Sidebar;
+export default SiderBarSuperAdmin;

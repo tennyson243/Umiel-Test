@@ -1,15 +1,6 @@
-import React, { useCallback } from "react";
-import { useEffect } from "react";
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
-import { PRODUCT_UPDATE_RESET } from "../../constants/productConstants";
-import { detailsProduct, updateProduct } from "../../actions/productActions";
-import axios from "axios";
-import { Helmet } from "react-helmet-async";
-import EnTete from "../../Components/EnTete";
-import { Box } from "@mui/system";
+import { useTheme } from "@emotion/react";
 import {
+  Box,
   Button,
   CircularProgress,
   IconButton,
@@ -26,14 +17,20 @@ import {
   Typography,
   useMediaQuery,
 } from "@mui/material";
-import Chargement from "../../Components/Chargement";
-import MessageBox from "../../Components/MessageBox";
-import { useTheme } from "@emotion/react";
+import React, { useCallback, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import { PRODUCT_UPDATE_RESET } from "../../../constants/productConstants";
+import { detailsProduct, updateProduct } from "../../../actions/productActions";
+import axios from "axios";
 import { useDropzone } from "react-dropzone";
 import { Add, Delete, Edit } from "@mui/icons-material";
-import Header from "../../Components/Header";
+import Chargement from "../../../Components/Chargement";
+import MessageBox from "../../../Components/MessageBox";
+import { Helmet } from "react-helmet-async";
+import Header from "../../../Components/Header";
 
-const ModifierProductScreen = ({ file }) => {
+const AdminModifierProductScreen = () => {
   const theme = useTheme();
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const navigate = useNavigate();
@@ -72,7 +69,7 @@ const ModifierProductScreen = ({ file }) => {
   const dispatch = useDispatch();
   useEffect(() => {
     if (successUpdate) {
-      navigate("/products");
+      navigate("/product");
     }
     if (!product || product._id !== productId || successUpdate) {
       dispatch({ type: PRODUCT_UPDATE_RESET });
@@ -719,4 +716,4 @@ const ModifierProductScreen = ({ file }) => {
   );
 };
 
-export default ModifierProductScreen;
+export default AdminModifierProductScreen;

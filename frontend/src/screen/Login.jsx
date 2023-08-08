@@ -20,6 +20,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { signin } from "../actions/userActions";
 import Chargement from "../Components/Chargement";
 import MessageBox from "../Components/MessageBox";
+import { toast } from "react-toastify";
 
 const Login = (props) => {
   const theme = useTheme();
@@ -50,8 +51,8 @@ const Login = (props) => {
   }, [navigate, redirect, userInfo]);
   return (
     <>
-      <EnTete title='Connexion' />
-      <Container className='small-container'>
+      <EnTete title="Connexion" />
+      <Container className="small-container">
         <Helmet>
           <title>Connectez-Vous</title>
         </Helmet>
@@ -59,34 +60,35 @@ const Login = (props) => {
         <Grid>
           <form onSubmit={submitHandler}>
             <Box
-              padding='20px'
-              height='70vh'
-              width='300px'
-              margin='20px auto'
+              padding="20px"
+              height="70vh"
+              width="300px"
+              margin="20px auto"
               backgroundColor={theme.palette.background.alt}
-              border='4px solid'
+              border="4px solid"
               borderColor={theme.palette.primary.main}
             >
-              <Grid align='center'>
+              <Grid align="center">
                 <Avatar style={avatarStyle}>
                   {/* <LockOutlinedIcon /> */}
                 </Avatar>
                 <h2>Connexion</h2>
               </Grid>
               {loading && <Chargement />}
-              {error && <MessageBox variant='error'>{error}</MessageBox>}
+              {error && <MessageBox severity="error">{error}</MessageBox>}
+              {error && toast.error(error)}
               <Stack spacing={2}>
                 <TextField
-                  label='Email'
-                  placeholder='Entrer votre Email'
+                  label="Email"
+                  placeholder="Entrer votre Email"
                   fullWidth
                   required
                   onChange={(e) => setEmail(e.target.value)}
                 />
                 <TextField
-                  label='Mot de passe'
-                  placeholder='Entrer votre mot de passe'
-                  type='password'
+                  label="Mot de passe"
+                  placeholder="Entrer votre mot de passe"
+                  type="password"
                   fullWidth
                   required
                   onChange={(e) => setMotdepasse(e.target.value)}
@@ -94,13 +96,13 @@ const Login = (props) => {
               </Stack>
 
               <FormControlLabel
-                control={<Checkbox name='checkedB' color='primary' />}
-                label='Se rappeler de moi'
+                control={<Checkbox name="checkedB" color="primary" />}
+                label="Se rappeler de moi"
               />
               <Button
-                type='submit'
-                color='primary'
-                variant='contained'
+                type="submit"
+                color="primary"
+                variant="contained"
                 style={btnstyle}
                 fullWidth
               >
@@ -113,7 +115,7 @@ const Login = (props) => {
                 {" "}
                 Nouveau Utilisateur?{" "}
                 <Button
-                  variant='Text'
+                  variant="Text"
                   onClick={() => navigate(`/signup?redirect=${redirect}`)}
                   fullWidth
                 >

@@ -1,69 +1,73 @@
-import { useTheme } from "@emotion/react";
+import React, { useEffect, useState } from "react";
 import {
-  Avatar,
+  createdGalerie,
+  deleteGalerie,
+  listGaleries,
+} from "../../../actions/Blog/galerieActions";
+import {
+  GALERIE_CREATE_RESET,
+  GALERIE_DELETE_RESET,
+} from "../../../constants/Blog/galerieConstants";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import {
   Box,
   Button,
   Card,
   CardActions,
   CardContent,
+  CardHeader,
+  CardMedia,
   Collapse,
+  IconButton,
   Typography,
   useMediaQuery,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { Helmet } from "react-helmet-async";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import {
-  createPopulaire,
-  deletePopulaire,
-  listPopulaires,
-} from "../../../actions/Blog/populaireAction";
-import Chargement from "../../../Components/Chargement";
+import { useTheme } from "@emotion/react";
 import FlexBetween from "../../../Components/FlexBetween";
 import MessageBox from "../../../Components/MessageBox";
-import {
-  POPULAIRE_CREATE_RESET,
-  POPULAIRE_DELETE_RESET,
-} from "../../../constants/Blog/populaireConstants";
+import Chargement from "../../../Components/Chargement";
 import Header from "../../../Components/Header";
+import { Helmet } from "react-helmet-async";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
-const PopulaireDashScreen = () => {
+const AdminGalerieList = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const theme = useTheme();
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const navigate = useNavigate();
 
-  const populairesList = useSelector((state) => state.populairesList);
-  const { loading, error, populaires } = populairesList;
-  const populaireCreate = useSelector((state) => state.populaireCreate);
+  const galeriesList = useSelector((state) => state.galeriesList);
+  const { loading, error, galeries } = galeriesList;
+  const galerieCreate = useSelector((state) => state.galerieCreate);
   const {
     loading: loadingCreate,
     error: errorCreate,
     success: successCreate,
-    populaire: createdPopulaire,
-  } = populaireCreate;
+    galerie: galerieCreated,
+  } = galerieCreate;
 
-  const populaireDelete = useSelector((state) => state.populaireDelete);
+  const galerieDelete = useSelector((state) => state.galerieDelete);
   const {
     loading: loadingDelete,
     error: errorDelete,
     success: successDelete,
-  } = populaireDelete;
+  } = galerieDelete;
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
   const dispatch = useDispatch();
+
   useEffect(() => {
     if (successCreate) {
-      dispatch({ type: POPULAIRE_CREATE_RESET });
-      navigate(`/nutritions/${createdPopulaire._id}/edit`);
+      dispatch({ type: GALERIE_CREATE_RESET });
+      navigate(`/galeries/${galerieCreated._id}/edit`);
     }
     if (successDelete) {
-      dispatch({ type: POPULAIRE_DELETE_RESET });
+      dispatch({ type: GALERIE_DELETE_RESET });
     }
-    dispatch(listPopulaires());
+    dispatch(listGaleries());
   }, [
-    createdPopulaire,
+    galerieCreated,
     dispatch,
     navigate,
     successCreate,
@@ -71,24 +75,22 @@ const PopulaireDashScreen = () => {
     userInfo._id,
   ]);
 
-  const deleteHandler = (populaire) => {
+  const deleteHandler = (galerie) => {
     if (window.confirm("Are you sure to delete?")) {
-      dispatch(deletePopulaire(populaire._id));
+      dispatch(deleteGalerie(galerie._id));
     }
   };
   const createHandler = () => {
-    dispatch(createPopulaire());
+    dispatch(createdGalerie());
   };
   return (
     <>
       <Helmet>
-        <title>Nutrition Naturelle</title>
+        <title>La Galerie</title>
       </Helmet>
+
       <Box m="1.5rem 2.5rem">
-        <Header
-          title="NUTRITIONS"
-          subtitle="La liste des articles sur la nutrition naturelle"
-        />
+        <Header title="GALERIE" subtitle="Liste des photos dans la Galerie" />
         {loadingDelete && <Chargement />}
         {errorDelete && <MessageBox severity="error">{errorDelete}</MessageBox>}
 
@@ -127,7 +129,7 @@ const PopulaireDashScreen = () => {
                     padding: "10px 20px",
                   }}
                 >
-                  Ajouter un article nutrition naturelle
+                  Ajouter une nouvelle photo dans la Galerie
                 </Button>
               </Box>
             </Box>
@@ -142,7 +144,7 @@ const PopulaireDashScreen = () => {
                 "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
               }}
             >
-              {populaires.map((populaire) => (
+              {galeries.map((galerie) => (
                 <>
                   <Card
                     sx={{
@@ -150,37 +152,34 @@ const PopulaireDashScreen = () => {
                       backgroundColor: theme.palette.background.alt,
                       borderRadius: "0.55rem",
                     }}
-                    key={populaire._id}
+                    key={galerie._id}
                   >
-                    <CardContent>
-                      <Typography
-                        sx={{ fontSize: 14 }}
-                        color={theme.palette.secondary[700]}
-                        gutterBottom
-                      >
-                        {populaire.sousCategorie}
-                      </Typography>
-                      <FlexBetween>
-                        <Typography variant="h5" component="div">
-                          {populaire.title}
-                        </Typography>
-                        <Avatar
-                          src={populaire.cover}
-                          sx={{
-                            width: 70,
-                            height: 70,
-                          }}
-                        />
-                      </FlexBetween>
-                    </CardContent>
+                    <CardHeader
+                      title={galerie.title}
+                      subheader={new Date(galerie.createdAt).toLocaleDateString(
+                        "fr-FR",
+                        {
+                          month: "long",
+                          day: "numeric",
+                          year: "numeric",
+                        }
+                      )}
+                    />
+
+                    <CardMedia
+                      component="img"
+                      height="194"
+                      image={galerie.cover}
+                      alt="Paella dish"
+                    />
+
                     <CardActions>
-                      <Button
-                        variant="primary"
-                        size="small"
+                      <IconButton
                         onClick={() => setIsExpanded(!isExpanded)}
+                        aria-label="show more"
                       >
-                        Voir Plus
-                      </Button>
+                        <ExpandMoreIcon />
+                      </IconButton>
                     </CardActions>
                     <Collapse
                       in={isExpanded}
@@ -191,12 +190,8 @@ const PopulaireDashScreen = () => {
                       }}
                     >
                       <CardContent>
-                        <Typography>id: {populaire._id}</Typography>
-                        <Box>
-                          <Typography>
-                            {populaire.desc.slice(0, 70)}...
-                          </Typography>
-                        </Box>
+                        <Typography>id: {galerie._id}</Typography>
+
                         <FlexBetween
                           sx={{
                             backgroundColor: theme.palette.primary[700],
@@ -208,7 +203,7 @@ const PopulaireDashScreen = () => {
                             variant="primary"
                             size="small"
                             onClick={() =>
-                              navigate(`/populaire/${populaire._id}/edit`)
+                              navigate(`/galeries/${galerie._id}/edit`)
                             }
                           >
                             Modifier
@@ -216,7 +211,7 @@ const PopulaireDashScreen = () => {
                           <Button
                             variant="primary"
                             size="small"
-                            onClick={() => deleteHandler(populaire)}
+                            onClick={() => deleteHandler(galerie)}
                           >
                             Supprimer
                           </Button>
@@ -234,4 +229,4 @@ const PopulaireDashScreen = () => {
   );
 };
 
-export default PopulaireDashScreen;
+export default AdminGalerieList;

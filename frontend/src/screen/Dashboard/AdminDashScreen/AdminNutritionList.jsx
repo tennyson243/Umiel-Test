@@ -1,3 +1,15 @@
+import React, { useEffect, useState } from "react";
+import {
+  createPopulaire,
+  deletePopulaire,
+  listPopulaires,
+} from "../../../actions/Blog/populaireAction";
+import {
+  POPULAIRE_CREATE_RESET,
+  POPULAIRE_DELETE_RESET,
+} from "../../../constants/Blog/populaireConstants";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { useTheme } from "@emotion/react";
 import {
   Avatar,
@@ -10,25 +22,13 @@ import {
   Typography,
   useMediaQuery,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { Helmet } from "react-helmet-async";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import {
-  createPopulaire,
-  deletePopulaire,
-  listPopulaires,
-} from "../../../actions/Blog/populaireAction";
-import Chargement from "../../../Components/Chargement";
 import FlexBetween from "../../../Components/FlexBetween";
 import MessageBox from "../../../Components/MessageBox";
-import {
-  POPULAIRE_CREATE_RESET,
-  POPULAIRE_DELETE_RESET,
-} from "../../../constants/Blog/populaireConstants";
+import Chargement from "../../../Components/Chargement";
 import Header from "../../../Components/Header";
+import { Helmet } from "react-helmet-async";
 
-const PopulaireDashScreen = () => {
+const AdminNutritionList = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const theme = useTheme();
   const isNonMobile = useMediaQuery("(min-width:600px)");
@@ -234,4 +234,4 @@ const PopulaireDashScreen = () => {
   );
 };
 
-export default PopulaireDashScreen;
+export default AdminNutritionList;

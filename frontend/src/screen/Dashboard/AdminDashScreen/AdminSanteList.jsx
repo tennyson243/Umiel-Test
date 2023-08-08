@@ -1,3 +1,14 @@
+import React, { useEffect, useState } from "react";
+import {
+  createLifestyle,
+  deleteLifestyle,
+  listLifestyles,
+} from "../../../actions/Blog/lifeStyleActions";
+import {
+  LIFESTYLE_CREATE_RESET,
+  LIFESTYLE_DELETE_RESET,
+} from "../../../constants/Blog/lifeStyleConstants";
+import { useDispatch, useSelector } from "react-redux";
 import { useTheme } from "@emotion/react";
 import {
   Avatar,
@@ -10,60 +21,49 @@ import {
   Typography,
   useMediaQuery,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { Helmet } from "react-helmet-async";
-import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import {
-  createPopulaire,
-  deletePopulaire,
-  listPopulaires,
-} from "../../../actions/Blog/populaireAction";
-import Chargement from "../../../Components/Chargement";
 import FlexBetween from "../../../Components/FlexBetween";
 import MessageBox from "../../../Components/MessageBox";
-import {
-  POPULAIRE_CREATE_RESET,
-  POPULAIRE_DELETE_RESET,
-} from "../../../constants/Blog/populaireConstants";
+import Chargement from "../../../Components/Chargement";
 import Header from "../../../Components/Header";
+import { Helmet } from "react-helmet-async";
 
-const PopulaireDashScreen = () => {
+const AdminSanteList = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const theme = useTheme();
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const navigate = useNavigate();
 
-  const populairesList = useSelector((state) => state.populairesList);
-  const { loading, error, populaires } = populairesList;
-  const populaireCreate = useSelector((state) => state.populaireCreate);
+  const lifestylesList = useSelector((state) => state.lifestylesList);
+  const { loading, error, lifestyles } = lifestylesList;
+  const lifestyleCreate = useSelector((state) => state.lifestyleCreate);
   const {
     loading: loadingCreate,
     error: errorCreate,
     success: successCreate,
-    populaire: createdPopulaire,
-  } = populaireCreate;
+    lifestyle: createdLifestyle,
+  } = lifestyleCreate;
 
-  const populaireDelete = useSelector((state) => state.populaireDelete);
+  const lifestyleDelete = useSelector((state) => state.lifestyleDelete);
   const {
     loading: loadingDelete,
     error: errorDelete,
     success: successDelete,
-  } = populaireDelete;
+  } = lifestyleDelete;
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
   const dispatch = useDispatch();
   useEffect(() => {
     if (successCreate) {
-      dispatch({ type: POPULAIRE_CREATE_RESET });
-      navigate(`/nutritions/${createdPopulaire._id}/edit`);
+      dispatch({ type: LIFESTYLE_CREATE_RESET });
+      navigate(`/Santés/${createdLifestyle._id}/edit`);
     }
     if (successDelete) {
-      dispatch({ type: POPULAIRE_DELETE_RESET });
+      dispatch({ type: LIFESTYLE_DELETE_RESET });
     }
-    dispatch(listPopulaires());
+    dispatch(listLifestyles());
   }, [
-    createdPopulaire,
+    createdLifestyle,
     dispatch,
     navigate,
     successCreate,
@@ -71,23 +71,24 @@ const PopulaireDashScreen = () => {
     userInfo._id,
   ]);
 
-  const deleteHandler = (populaire) => {
+  const deleteHandler = (lifestyle) => {
     if (window.confirm("Are you sure to delete?")) {
-      dispatch(deletePopulaire(populaire._id));
+      dispatch(deleteLifestyle(lifestyle._id));
     }
   };
   const createHandler = () => {
-    dispatch(createPopulaire());
+    dispatch(createLifestyle());
   };
   return (
     <>
       <Helmet>
-        <title>Nutrition Naturelle</title>
+        <title>Les articles Santé naturelle'</title>
       </Helmet>
+
       <Box m="1.5rem 2.5rem">
         <Header
-          title="NUTRITIONS"
-          subtitle="La liste des articles sur la nutrition naturelle"
+          title="SANTE"
+          subtitle="La liste des articles sur la Santé naturelle"
         />
         {loadingDelete && <Chargement />}
         {errorDelete && <MessageBox severity="error">{errorDelete}</MessageBox>}
@@ -127,7 +128,7 @@ const PopulaireDashScreen = () => {
                     padding: "10px 20px",
                   }}
                 >
-                  Ajouter un article nutrition naturelle
+                  Ajouter un article sante naturelle
                 </Button>
               </Box>
             </Box>
@@ -142,7 +143,7 @@ const PopulaireDashScreen = () => {
                 "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
               }}
             >
-              {populaires.map((populaire) => (
+              {lifestyles.map((lifestyle) => (
                 <>
                   <Card
                     sx={{
@@ -150,7 +151,7 @@ const PopulaireDashScreen = () => {
                       backgroundColor: theme.palette.background.alt,
                       borderRadius: "0.55rem",
                     }}
-                    key={populaire._id}
+                    key={lifestyle._id}
                   >
                     <CardContent>
                       <Typography
@@ -158,14 +159,14 @@ const PopulaireDashScreen = () => {
                         color={theme.palette.secondary[700]}
                         gutterBottom
                       >
-                        {populaire.sousCategorie}
+                        {lifestyle.sousCategorie}
                       </Typography>
                       <FlexBetween>
                         <Typography variant="h5" component="div">
-                          {populaire.title}
+                          {lifestyle.title}
                         </Typography>
                         <Avatar
-                          src={populaire.cover}
+                          src={lifestyle.cover}
                           sx={{
                             width: 70,
                             height: 70,
@@ -191,12 +192,8 @@ const PopulaireDashScreen = () => {
                       }}
                     >
                       <CardContent>
-                        <Typography>id: {populaire._id}</Typography>
-                        <Box>
-                          <Typography>
-                            {populaire.desc.slice(0, 70)}...
-                          </Typography>
-                        </Box>
+                        <Typography>id: {lifestyle._id}</Typography>
+
                         <FlexBetween
                           sx={{
                             backgroundColor: theme.palette.primary[700],
@@ -208,7 +205,7 @@ const PopulaireDashScreen = () => {
                             variant="primary"
                             size="small"
                             onClick={() =>
-                              navigate(`/populaire/${populaire._id}/edit`)
+                              navigate(`/lifestyles/${lifestyle._id}/edit`)
                             }
                           >
                             Modifier
@@ -216,7 +213,7 @@ const PopulaireDashScreen = () => {
                           <Button
                             variant="primary"
                             size="small"
-                            onClick={() => deleteHandler(populaire)}
+                            onClick={() => deleteHandler(lifestyle)}
                           >
                             Supprimer
                           </Button>
@@ -234,4 +231,4 @@ const PopulaireDashScreen = () => {
   );
 };
 
-export default PopulaireDashScreen;
+export default AdminSanteList;

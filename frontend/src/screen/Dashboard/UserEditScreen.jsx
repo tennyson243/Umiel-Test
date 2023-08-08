@@ -14,7 +14,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { detailsUser, updateUser } from "../../actions/userActions";
 import Chargement from "../../Components/Chargement";
-import EnTete from "../../Components/EnTete";
 import MessageBox from "../../Components/MessageBox";
 import {
   USER_DETAILS_RESET,
@@ -34,6 +33,7 @@ const UserEditScreen = () => {
   const [isInfluenceur, setIsInfluenceur] = useState(false);
   const [isSuperAdmin, setIsSuperAdmin] = useState(false);
   const [isMembreEquipe, setIsMembreEquipe] = useState(false);
+  const [isBlogeur, setIsBlogeur] = useState(false);
   const theme = useTheme();
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const userDetails = useSelector((state) => state.userDetails);
@@ -63,6 +63,7 @@ const UserEditScreen = () => {
       setIsInfluenceur(utilisateur.isInfluenceur);
       setIsSuperAdmin(utilisateur.isSuperAdmin);
       setIsMembreEquipe(utilisateur.isMembreEquipe);
+      setIsBlogeur(utilisateur.isBlogeur);
     }
   }, [dispatch, navigate, successUpdate, utilisateur, userId]);
 
@@ -79,6 +80,7 @@ const UserEditScreen = () => {
         isInfluenceur,
         isSuperAdmin,
         isMembreEquipe,
+        isBlogeur,
       })
     );
   };
@@ -201,6 +203,18 @@ const UserEditScreen = () => {
                       />
                     }
                     label="Membre Equipe?"
+                  />
+                </Box>
+                <Box sx={{ gridColumn: "span 2" }}>
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        id="isBlogeur"
+                        checked={isBlogeur}
+                        onChange={(e) => setIsMembreEquipe(e.target.checked)}
+                      />
+                    }
+                    label="Blogeur(se)?"
                   />
                 </Box>
               </Box>

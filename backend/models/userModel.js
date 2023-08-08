@@ -12,12 +12,16 @@ const userSchema = new mongoose.Schema(
     motdepasse: { type: String, required: true, min: 5 },
     telephone: { type: String, required: true, min: 10, max: 15, unique: true },
     photoURL: { type: String, default: "" },
+    city: { type: String },
+    state: { type: String },
+    country: { type: String },
     isAdmin: { type: Boolean, default: false, required: true },
     isSeller: { type: Boolean, default: false, required: true },
     isSuperAdmin: { type: Boolean, default: false, required: true },
     isInfluenceur: { type: Boolean, default: false, required: true },
     isMembreEquipe: { type: Boolean, default: false, required: true },
-    transactions:{
+    isBlogeur: { type: Boolean, default: false, required: true },
+    transactions: {
       type: [mongoose.Types.ObjectId],
       ref: "Transaction",
     },

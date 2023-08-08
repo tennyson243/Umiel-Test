@@ -1,6 +1,6 @@
 import { useTheme } from "@emotion/react";
-import { Add, Delete, Edit } from "@mui/icons-material";
 import {
+  Box,
   Button,
   Card,
   CardContent,
@@ -18,23 +18,23 @@ import {
   Typography,
   useMediaQuery,
 } from "@mui/material";
-import { Box } from "@mui/system";
-import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Helmet } from "react-helmet-async";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+import { LIFESTYLE_UPDATE_RESET } from "../../../constants/Blog/lifeStyleConstants";
 import {
   modificationLifestyle,
   updateLifestyle,
 } from "../../../actions/Blog/lifeStyleActions";
-import Chargement from "../../../Components/Chargement";
+import axios from "axios";
+import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+import { Add, Delete, Edit } from "@mui/icons-material";
 import MessageBox from "../../../Components/MessageBox";
-import { LIFESTYLE_UPDATE_RESET } from "../../../constants/Blog/lifeStyleConstants";
+import Chargement from "../../../Components/Chargement";
 import Header from "../../../Components/Header";
-import ReactMarkdown from "react-markdown";
+import { Helmet } from "react-helmet-async";
 
-const LifestyleEditScreen = () => {
+const AdminModifierSante = () => {
   const theme = useTheme();
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const navigate = useNavigate();
@@ -702,4 +702,4 @@ const LifestyleEditScreen = () => {
   );
 };
 
-export default LifestyleEditScreen;
+export default AdminModifierSante;

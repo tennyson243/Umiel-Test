@@ -25,7 +25,7 @@ import generalRouter from "./routes/generalRouter.js";
 dotenv.config();
 
 mongoose
-  .connect(process.env.MONGODB_URI_LOCAL || "mongodb://localhost/Umiel", {
+  .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })

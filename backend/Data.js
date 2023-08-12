@@ -1400,19 +1400,29 @@ const data = {
   ],
   gallery: [
     {
-      cover: "../images/gallery/g1.jpg",
+      title: "galerie 1",
+      cover: "/images/gallery/g1.jpg",
+      author: "tennyson",
     },
     {
-      cover: "../images/gallery/g2.jpg",
+      title: "galerie 2",
+      cover: "/images/gallery/g2.jpg",
+      author: "tennyson",
     },
     {
-      cover: "../images/gallery/g3.jpg",
+      title: "galerie 3",
+      cover: "/images/gallery/g3.jpg",
+      author: "tennyson",
     },
     {
-      cover: "../images/gallery/g4.jpg",
+      title: "galerie 4",
+      cover: "/images/gallery/g4.jpg",
+      author: "tennyson",
     },
     {
-      cover: "../images/gallery/g5.jpg",
+      title: "galerie 5",
+      cover: "/images/gallery/g5.jpg",
+      author: "tennyson",
     },
   ],
   ppost: [
@@ -1421,21 +1431,21 @@ const data = {
       catgeory: "world",
       title: "We Went Deep Underground For This Amazing Cave Shot",
       date: "19. February 2022",
-      cover: "../images/ppost/pop1.jpg",
+      cover: "/images/ppost/pop1.jpg",
     },
     {
       id: 2,
       catgeory: "health",
       title: "6 Reasons Why You Shouldn’t Skip Breakfast",
       date: "19. February 2022",
-      cover: "../images/ppost/pop2.jpg",
+      cover: "/images/ppost/pop2.jpg",
     },
     {
       id: 3,
       catgeory: "food",
       title: "Our Top 5 Restaurants For A Complete Culinary Experience",
       date: "19. February 2022",
-      cover: "../images/ppost/pop3.jpg",
+      cover: "/images/ppost/pop3.jpg",
     },
     {
       id: 4,

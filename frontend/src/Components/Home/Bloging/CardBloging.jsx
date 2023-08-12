@@ -42,11 +42,19 @@ const CardBloging = (props) => {
                 }}
                 onClick={() => navigate(`/hero/${hero.title}`)}
               >
-                {hero.title.slice(0, 40)}...
+                {hero.title.toLowerCase().charAt(0).toUpperCase() +
+                  hero.title.toLowerCase().slice(0, 40)}
+                ...
               </Typography>
               <div className="date">
                 <i class="fas fa-calendar-days"></i>
-                <label>{hero.time}</label>
+                <label>
+                  {new Date(hero.createdAt).toLocaleDateString("fr-FR", {
+                    month: "long",
+                    day: "numeric",
+                    year: "numeric",
+                  })}
+                </label>
               </div>
             </div>
           </Box>

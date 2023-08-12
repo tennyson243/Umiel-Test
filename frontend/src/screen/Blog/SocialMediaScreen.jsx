@@ -9,12 +9,12 @@ const SocialMediaScreen = () => {
   return (
     <>
       <Box>
-        <Stack direction='row' spacing={2}>
+        <Stack direction="row" spacing={2}>
           <IconButton>
             <FacebookIcon />
           </IconButton>
           <Typography
-            variant='h6'
+            variant="h6"
             sx={{
               fontWeight: "bold",
               cursor: "pointer",
@@ -24,12 +24,12 @@ const SocialMediaScreen = () => {
           </Typography>
         </Stack>
 
-        <Stack direction='row' spacing={2}>
+        <Stack direction="row" spacing={2}>
           <IconButton>
             <InstagramIcon />
           </IconButton>
           <Typography
-            variant='h6'
+            variant="h6"
             sx={{
               fontWeight: "bold",
               cursor: "pointer",
@@ -39,12 +39,12 @@ const SocialMediaScreen = () => {
           </Typography>
         </Stack>
 
-        <Stack direction='row' spacing={2}>
+        <Stack direction="row" spacing={2}>
           <IconButton>
             <Pinterest />
           </IconButton>
           <Typography
-            variant='h6'
+            variant="h6"
             sx={{
               fontWeight: "bold",
               cursor: "pointer",
@@ -54,12 +54,12 @@ const SocialMediaScreen = () => {
           </Typography>
         </Stack>
 
-        <Stack direction='row' spacing={2}>
+        <Stack direction="row" spacing={2}>
           <IconButton>
             <Twitter />
           </IconButton>
           <Typography
-            variant='h6'
+            variant="h6"
             sx={{
               fontWeight: "bold",
               cursor: "pointer",
@@ -69,12 +69,12 @@ const SocialMediaScreen = () => {
           </Typography>
         </Stack>
 
-        <Stack direction='row' spacing={2}>
+        <Stack direction="row" spacing={2}>
           <IconButton>
             <YouTube />
           </IconButton>
           <Typography
-            variant='h6'
+            variant="h6"
             sx={{
               fontWeight: "bold",
               cursor: "pointer",

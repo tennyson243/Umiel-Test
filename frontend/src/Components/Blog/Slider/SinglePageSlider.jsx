@@ -1,22 +1,14 @@
-import { useTheme } from "@emotion/react";
-import { Container, Slide, Tooltip, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import React, { forwardRef, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { listPopulaires } from "../../../actions/Blog/populaireAction";
 import Chargement from "../../Chargement";
 import MessageBox from "../../MessageBox";
-import { Swiper, SwiperSlide } from "swiper/react";
-// import { Navigation, Autoplay, EffectCoverflow, Lazy, Zoom } from "swiper";
-// import "swiper/css";
-// import "swiper/css/navigation";
-// import "swiper/css/effect-coverflow";
-// import "swiper/css/zoom";
-// import "../../Swipper/swiper.css";
 import { useNavigate } from "react-router-dom";
+import Slider from "react-slick";
+import "./slider.css";
 
 const SinglePageSlider = () => {
-  
   const populairesList = useSelector((state) => state.populairesList);
   const { loading, error, populaires } = populairesList;
   const dispatch = useDispatch();
@@ -26,7 +18,24 @@ const SinglePageSlider = () => {
     dispatch(listPopulaires());
   }, [dispatch]);
 
-
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 7,
+    slidesToScroll: 2,
+    autoplay: true,
+    arrows: false,
+    responsive: [
+      {
+        breakpoint: 800,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
   return (
     <>
       <Box>
@@ -34,67 +43,31 @@ const SinglePageSlider = () => {
           {loading ? (
             <Chargement />
           ) : error ? (
-            <MessageBox severity='error'>{error}</MessageBox>
+            <MessageBox severity="error">{error}</MessageBox>
           ) : (
-            <Container sx={{ pt: 5, pb: 5 }}>
-              {/* <Swiper
-                modules={[Navigation, Autoplay, EffectCoverflow, Zoom]}
-                centeredSlides
-                slidesPerView={3}
-                grabCursor
-                navigation
-                autoplay
-                lazy
-                zoom
-                effect='coverflow'
-                coverflowEffect={{
-                  rotate: 50,
-                  stretch: 0,
-                  depth: 100,
-                  modifier: 1,
-                  slideShadows: true,
-                }}
-              >
-                {populaires.map((val) => (
-                  <SwiperSlide key={val}>
-                    <Box>
-                      <Box>
+            <section className="singlePopular">
+              <div className="content">
+                <Slider {...settings}>
+                  {populaires.map((val) => {
+                    return (
+                      <div className="items">
                         <Box
-                          sx={{
-                            height: "150px",
-                            cursor: "pointer",
-                          }}
+                          className="box"
                           onClick={() => navigate(`/populaire/${val.title}`)}
                         >
-                          <img src={val.cover} alt='' />
+                          <div className="images">
+                            <img src={val.cover} alt="" />
+                          </div>
+                          <div className="text">
+                            <h1 className="title">{val.title}</h1>
+                          </div>
                         </Box>
-                      </Box>
-                    </Box>
-
-                    <Tooltip
-                      title={val.title}
-                      sx={{
-                        position: "absolute",
-                        bottom: "8px",
-                        left: "8px",
-                        zIndex: 2,
-                      }}
-                    >
-                      <Typography
-                        variant='h6'
-                        sx={{
-                          fontWeight: "bold",
-                          pl: "15px",
-                        }}
-                        onClick={() => navigate(`/populaire/${val.title}`)}
-                      >
-                        {val.title}
-                      </Typography>
-                    </Tooltip>
-                  </SwiperSlide>
-                ))}
-              </Swiper> */}
-            </Container>
+                      </div>
+                    );
+                  })}
+                </Slider>
+              </div>
+            </section>
           )}
         </Box>
       </Box>

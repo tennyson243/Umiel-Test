@@ -2,6 +2,7 @@ import { useTheme } from "@emotion/react";
 import {
   Button,
   Divider,
+  IconButton,
   Stack,
   Typography,
   useMediaQuery,
@@ -9,7 +10,7 @@ import {
 import { Box } from "@mui/system";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { detailsHero } from "../../actions/Blog/heroActions";
 import Chargement from "../../Components/Chargement";
 import MessageBox from "../../Components/MessageBox";
@@ -18,17 +19,13 @@ import Side from "./Side";
 import "./style.css";
 import ReactMarkdown from "react-markdown";
 
-import { ArrowRightOutlined } from "@mui/icons-material";
 import {
-  WhatsappShareButton,
-  FacebookShareButton,
-  TwitterShareButton,
-  FacebookIcon,
-  TwitterIcon,
-  WhatsappIcon,
-  LinkedinShareButton,
-  LinkedinIcon,
-} from "react-share";
+  ArrowRightOutlined,
+  Facebook,
+  LinkedIn,
+  Twitter,
+  WhatsApp,
+} from "@mui/icons-material";
 import FlexBetweenMedia from "../../Components/FlexBetweenMedia";
 
 const HeroScreen = () => {
@@ -44,9 +41,6 @@ const HeroScreen = () => {
   useEffect(() => {
     dispatch(detailsHero(heroTitle));
   }, [dispatch, heroTitle]);
-
-  const location = useLocation();
-  const articleUrl = encodeURIComponent(window.location.href);
 
   return (
     <>
@@ -110,20 +104,62 @@ const HeroScreen = () => {
                       },
                     }}
                     backgroundColor={theme.palette.background.alt}
-                    p="10px"
+                    p="2px"
                   >
-                    <FacebookShareButton url={articleUrl}>
-                      <FacebookIcon style={{ width: "40px" }} />
-                    </FacebookShareButton>
-                    <LinkedinShareButton url={articleUrl}>
-                      <LinkedinIcon style={{ width: "40px" }} />
-                    </LinkedinShareButton>
-                    <TwitterShareButton url={articleUrl}>
-                      <TwitterIcon style={{ width: "40px" }} />
-                    </TwitterShareButton>
-                    <WhatsappShareButton url={articleUrl}>
-                      <WhatsappIcon style={{ width: "40px" }} />
-                    </WhatsappShareButton>
+                    <Stack
+                      spacing={1}
+                      direction="row"
+                      sx={{
+                        m: "10px 0px",
+                        pr: {
+                          xs: "10px",
+                        },
+                      }}
+                      backgroundColor={theme.palette.background.alt}
+                      pl="10px"
+                    >
+                      <IconButton
+                        onClick={() => {
+                          const url = encodeURIComponent(window.location.href);
+                          window.open(`https://wa.me/?text=${url}`);
+                        }}
+                      >
+                        <WhatsApp />
+                      </IconButton>
+
+                      <IconButton
+                        onClick={() => {
+                          const url = encodeURIComponent(window.location.href);
+                          window.open(
+                            `https://www.facebook.com/sharer/sharer.php?u=${url}`
+                          );
+                        }}
+                      >
+                        <Facebook />
+                      </IconButton>
+
+                      <IconButton
+                        onClick={() => {
+                          const url = encodeURIComponent(window.location.href);
+                          window.open(
+                            `https://www.linkedin.com/shareArticle?url=${url}`
+                          );
+                        }}
+                      >
+                        <LinkedIn />
+                      </IconButton>
+
+                      <IconButton
+                        onClick={() => {
+                          const url = encodeURIComponent(window.location.href);
+                          window.open(
+                            `https://twitter.com/intent/tweet?url=${url}`
+                          );
+                        }}
+                      >
+                        <Twitter />
+                      </IconButton>
+                    </Stack>
                   </Stack>
 
                   <FlexBetweenMedia flexDirection="column">

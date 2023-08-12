@@ -29,6 +29,7 @@ const Populaire = () => {
     rows: 4,
     slidesPerRow: 1,
     autoplay: true,
+    arrows: false, // Remove arrows
     responsive: [
       {
         breakpoint: 800,
@@ -42,14 +43,14 @@ const Populaire = () => {
   };
   return (
     <>
-      <section className='popular'>
-        <Healding title='Nutrition naturelle' />
-        <div className='content'>
+      <section className="popular">
+        <Healding title="Nutrition naturelle" />
+        <div className="content">
           <Slider {...settings}>
             {loading ? (
               <Chargement />
             ) : error ? (
-              <MessageBox severity='error'>{error}</MessageBox>
+              <MessageBox severity="error">{error}</MessageBox>
             ) : (
               populaires.map((val) => (
                 <PopulaireCard key={val._id} populaire={val} />

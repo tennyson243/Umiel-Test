@@ -1,4 +1,4 @@
-import { Box, Stack } from "@mui/system";
+import { Box } from "@mui/system";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -14,7 +14,6 @@ import "slick-carousel/slick/slick-theme.css";
 import "./ppost.css";
 import styled from "@emotion/styled";
 import { Typography } from "@mui/material";
-import { CalendarToday } from "@mui/icons-material";
 
 const Ppost = () => {
   const herosPopulaireList = useSelector((state) => state.herosPopulaireList);
@@ -34,6 +33,7 @@ const Ppost = () => {
     slidesToShow: 2,
     slidesToScroll: 1,
     autoplay: true,
+    arrows: false, // Remove arrows
   };
 
   const ProductImage = styled("img")(({ src, theme }) => ({
@@ -42,6 +42,7 @@ const Ppost = () => {
     height: "230px",
     [theme.breakpoints.down("md")]: {
       width: "100%",
+      height: "10em",
     },
   }));
 
@@ -49,18 +50,18 @@ const Ppost = () => {
     <>
       <Box>
         <Box>
-          <Healding title='Remede Naturel' />
-          <div className='content'>
+          <Healding title="Remede Naturel" />
+          <div className="content">
             <Slider {...settings}>
               {loading ? (
                 <Chargement />
               ) : error ? (
-                <MessageBox severity='error'>{error}</MessageBox>
+                <MessageBox severity="error">{error}</MessageBox>
               ) : (
                 herosPopulaires.map((val) => (
-                  <div className='items'>
+                  <div className="items">
                     <Box
-                      margin='15px 15px 15px 0'
+                      margin="15px 15px 15px 0"
                       backgroundColor={theme.palette.background.alt}
                     >
                       <Box
@@ -68,11 +69,11 @@ const Ppost = () => {
                           position: "relative",
                         }}
                       >
-                        <div className='images'>
+                        <div className="images">
                           <Box>
                             <ProductImage src={val.cover} />
                           </Box>
-                          <div class='category category1'>
+                          <div class="category category1">
                             <span>{val.sousCategorie}</span>
                           </div>
                         </div>
@@ -84,27 +85,37 @@ const Ppost = () => {
                         }}
                       >
                         <Typography
-                          variant='h5'
+                          variant="h5"
                           sx={{
                             fontWeight: "bold",
-                            mb: "15px",
                             cursor: "pointer",
+                            mb: {
+                              xs: "15px",
+                            },
+                            fontSize: {
+                              xs: "15px",
+                              sm: "20px",
+                            },
                           }}
                           onClick={() => navigate(`/hero/${val.title}`)}
                         >
-                          {val.title.slice(0, 40)}...
+                          {val.title.toLowerCase().charAt(0).toUpperCase() +
+                            val.title.toLowerCase().slice(0, 30)}
+                          ...
                         </Typography>
-                        <Stack direction='row' spacing={2}>
-                          <CalendarToday />
-                          <Typography
-                            variant='h6'
-                            sx={{
-                              mb: "15px",
-                            }}
-                          >
-                            {val.time}
-                          </Typography>
-                        </Stack>
+                        <div className="date">
+                          <i class="fas fa-calendar-days"></i>
+                          <label>
+                            {new Date(val.createdAt).toLocaleDateString(
+                              "fr-FR",
+                              {
+                                month: "long",
+                                day: "numeric",
+                                year: "numeric",
+                              }
+                            )}
+                          </label>
+                        </div>
                       </Box>
                     </Box>
                   </div>

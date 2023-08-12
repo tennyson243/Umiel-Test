@@ -1,4 +1,3 @@
-import { Box } from "@mui/material";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { listHeros } from "../../../actions/Blog/heroActions";
@@ -18,14 +17,15 @@ const Hero = () => {
 
   return (
     <>
-      <section className='hero'>
-        <div className='container'>
+      <section className="hero">
+        <div className="container">
           {loading ? (
             <Chargement />
           ) : error ? (
-            <MessageBox variant='error'>{error}</MessageBox>
+            <MessageBox variant="error">{error}</MessageBox>
           ) : (
             heros
+              .sort((a, b) => b.createdAt - a.createdAt)
               .slice(0, 4)
               .map((item) => <HeroCard key={item._id} hero={item} />)
           )}

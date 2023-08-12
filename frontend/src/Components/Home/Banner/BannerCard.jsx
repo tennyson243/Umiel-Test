@@ -1,4 +1,3 @@
-import { useTheme } from "@emotion/react";
 import { Button, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
@@ -7,20 +6,19 @@ import { BannerImage } from "./BannerContenaire";
 
 const BannerCard = (props) => {
   const { banner } = props;
-  const theme = useTheme();
   const navigate = useNavigate();
   return (
     <>
       <section>
-        <div className='items'>
+        <div className="items">
           <Box
-            display='flex'
-            alignItems='center'
-            justifyContent='center' // Ajout de cette ligne pour centrer horizontalement
-            marginBottom='30px'
-            marginLeft='2px'
-            width='98%'
-            height='98%'
+            display="flex"
+            alignItems="center"
+            justifyContent="center" // Ajout de cette ligne pour centrer horizontalement
+            marginBottom="30px"
+            marginLeft="2px"
+            width="98%"
+            height="98%"
             sx={{
               flexDirection: {
                 sm: "row",
@@ -29,7 +27,7 @@ const BannerCard = (props) => {
             }}
           >
             <BannerImage src={banner.cover} />
-            <div className='text'>
+            <div className="text">
               <Box
                 sx={{
                   display: "flex",
@@ -40,13 +38,13 @@ const BannerCard = (props) => {
                   padding: "30px",
                 }}
               >
-                <Typography variant='h5'>{banner.subtitle}</Typography>
+                <Typography variant="h5">{banner.subtitle}</Typography>
                 <Typography
                   sx={{
                     lineHeight: 1.5,
                     fontSize: {
                       sm: "50px",
-                      xs: "42px",
+                      xs: "30px",
                     },
                     marginBottom: "20px",
                   }}
@@ -64,14 +62,14 @@ const BannerCard = (props) => {
                     marginBottom: { sm: "3rem", xs: "1.5rem" },
                   }}
                 >
-                  {banner.desc}
+                  {banner.desc.slice(0, 110)}...
                 </Typography>
                 {banner.bouton.map((btn, index) => (
                   <Button
                     key={btn}
                     fullWidth
                     // color='p'
-                    variant='contained'
+                    variant="contained"
                     sx={{
                       boxShadow: "none",
                       borderRadius: 0,
@@ -85,7 +83,7 @@ const BannerCard = (props) => {
               </Box>
             </div>
           </Box>
-          <div className='box shadow flexSB'></div>
+          <div className="box shadow flexSB"></div>
         </div>
       </section>
     </>

@@ -28,6 +28,7 @@ const Lifestyle = () => {
     slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true,
+    arrows: false,
     responsive: [
       {
         breakpoint: 800,
@@ -40,49 +41,57 @@ const Lifestyle = () => {
   };
   return (
     <>
-      <section className='popularPost life'>
-        <Healding title='Santé naturelle' />
-        <div className='content'>
+      <section className="popularPost life">
+        <Healding title="Santé naturelle" />
+        <div className="content">
           <Slider {...settings}>
             {loading ? (
               <Chargement />
             ) : error ? (
-              <MessageBox severity='error'>{error}</MessageBox>
+              <MessageBox severity="error">{error}</MessageBox>
             ) : (
               lifestyles.map((val) => (
-                <div className='items'>
+                <div className="items">
                   <Box
-                    margin='15px 15px 15px 0'
+                    margin="15px 15px 15px 0"
                     backgroundColor={theme.palette.background.alt}
                   >
-                    <div className='images'>
-                      <div className='img'>
-                        <img src={val.cover} alt='' />
+                    <div className="images">
+                      <div className="img">
+                        <img src={val.cover} alt="" />
                       </div>
-                      <div class='category category1'>
-                        <span>{val.sousCategorie}</span>
+                      <div class="category category1">
+                        <span>{val.sousCategorie.slice(0, 18)}..</span>
                       </div>
                     </div>
-                    <div className='text'>
+                    <div className="text">
                       <Typography
-                        variant='h5'
+                        variant="h5"
                         sx={{
                           fontWeight: "bold",
-                          padding: "0 0 0 20px",
                           margin: "0",
                           cursor: "pointer",
+                          m: {
+                            xs: "2px",
+                          },
                         }}
                         onClick={() => navigate(`/lifestyle/${val.title}`)}
                       >
                         {val.title.slice(0, 40)}...
                       </Typography>
-                      <div className='date'>
-                        <i class='fas fa-calendar-days'></i>
-                        <label>{val.date}</label>
+                      <div className="date">
+                        <i class="fas fa-calendar-days"></i>
+                        <label>
+                          {new Date(val.createdAt).toLocaleDateString("fr-FR", {
+                            month: "long",
+                            day: "numeric",
+                            year: "numeric",
+                          })}
+                        </label>
                       </div>
                     </div>
                   </Box>
-                  <div className='box shadow'></div>
+                  <div className="box shadow"></div>
                 </div>
               ))
             )}

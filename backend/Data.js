@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 const data = {
   heroModif: [
     {
-      cover: "/images/hero/hero1.jpg",
+      cover: "/Images/hero/hero1.jpg",
       title: "UN MASQUE PURIFIANT ANTI-POINTS NOIRS ET ACNÉ POUR MON VISAGE",
       catgeory: "Remède naturel",
       sousCategorie: "Infusions et tisanes",
@@ -26,23 +26,23 @@ const data = {
       ],
       recette: [
         {
-          image: "/images/hero/hero1.jpg",
+          image: "/Images/hero/hero1.jpg",
           desc: "Après avoir prélevé la quantité nécessaire de beurre de karité, faites-le fondre doucement au bain-marie (avec une eau entre 35 et 40°). Cette étape peut prendre entre 2 et 5 min.",
         },
         {
-          image: "/images/hero/hero1.jpg",
+          image: "/Images/hero/hero1.jpg",
           desc: "Maintenant que le beurre de karité a fondu, sortez-le du bain-marie et ajoutez les 5 mL d'huile végétale de Jojoba.",
         },
         {
-          image: "/images/hero/hero1.jpg",
+          image: "/Images/hero/hero1.jpg",
           desc: "Ajoutez les 15 gouttes d'huile essentielle de Bergamote sans bergaptène.",
         },
         {
-          image: "/images/hero/hero1.jpg",
+          image: "/Images/hero/hero1.jpg",
           desc: "Ajoutez ensuite les 8 gouttes de Géranium Rosat. ",
         },
         {
-          image: "/images/hero/hero1.jpg",
+          image: "/Images/hero/hero1.jpg",
           desc: "Homogénéisez le mélange en remuant légèrement la totalité des ingrédients.",
         },
       ],
@@ -65,12 +65,12 @@ const data = {
         "de la Charie, T. (2019). Se soigner par les huiles essentielles. Pourquoi et comment ça marche ? Editions du Rocher.",
     },
     {
-      cover: "/images/hero/hero2.jpg",
+      cover: "/Images/hero/hero2.jpg",
       title: "More than billion football fans attend Brazil world cup",
       catgeory: "Remède naturel",
       sousCategorie: "Homéopathiques",
       authorName: "alex",
-      authorImg: "/images/author.jpg",
+      authorImg: "/Images/author.jpg",
       time: "12 Aug - 2022",
       isPopulaire: true,
       desc: "Lorsqu'on a une peau acnéique, elle s'accompagne malheureusement bien souvent de points noirs et de pores dilatés. Ces points noirs, dus à des pores trop dilatés qui ne permettent pas au sébum sécrété de s'évacuer complètement, sont le résultat de l'oxydation de ce sébum qui stagne à la surface des pores. Ce masque pour le visage  saura éliminer les boutons d'acné et les points noirs, tout en douceur pour la peau grâce aux propriétés astingentes, séborégulatrices, anti-infectieuses et régénératrices cutanées de ses huiles essentielles et végétales.",
@@ -88,23 +88,23 @@ const data = {
       ],
       recette: [
         {
-          image: "/images/hero/hero2.jpg",
+          image: "/Images/hero/hero2.jpg",
           desc: "Après avoir prélevé la quantité nécessaire de beurre de karité, faites-le fondre doucement au bain-marie (avec une eau entre 35 et 40°). Cette étape peut prendre entre 2 et 5 min.",
         },
         {
-          image: "/images/hero/hero2.jpg",
+          image: "/Images/hero/hero2.jpg",
           desc: "Maintenant que le beurre de karité a fondu, sortez-le du bain-marie et ajoutez les 5 mL d'huile végétale de Jojoba.",
         },
         {
-          image: "/images/hero/hero2.jpg",
+          image: "/Images/hero/hero2.jpg",
           desc: "Ajoutez les 15 gouttes d'huile essentielle de Bergamote sans bergaptène.",
         },
         {
-          image: "/images/hero/hero2.jpg",
+          image: "/Images/hero/hero2.jpg",
           desc: "Ajoutez ensuite les 8 gouttes de Géranium Rosat. ",
         },
         {
-          image: "/images/hero/hero2.jpg",
+          image: "/Images/hero/hero2.jpg",
           desc: "Homogénéisez le mélange en remuant légèrement la totalité des ingrédients.",
         },
       ],
@@ -127,12 +127,12 @@ const data = {
         "de la Charie, T. (2019). Se soigner par les huiles essentielles. Pourquoi et comment ça marche ? Editions du Rocher.",
     },
     {
-      cover: "/images/hero/hero3.jpg",
+      cover: "/Images/hero/hero3.jpg",
       title: "No escaping new high tech speed cameras",
       catgeory: "Remède naturel",
       sousCategorie: "Huiles essentielles",
       authorName: "rina",
-      authorImg: "/images/author.jpg",
+      authorImg: "/Images/author.jpg",
       time: "22 Mar - 2022",
       isPopulaire: true,
       desc: "Lorsqu'on a une peau acnéique, elle s'accompagne malheureusement bien souvent de points noirs et de pores dilatés. Ces points noirs, dus à des pores trop dilatés qui ne permettent pas au sébum sécrété de s'évacuer complètement, sont le résultat de l'oxydation de ce sébum qui stagne à la surface des pores. Ce masque pour le visage  saura éliminer les boutons d'acné et les points noirs, tout en douceur pour la peau grâce aux propriétés astingentes, séborégulatrices, anti-infectieuses et régénératrices cutanées de ses huiles essentielles et végétales.",
@@ -150,23 +150,23 @@ const data = {
       ],
       recette: [
         {
-          image: "/images/hero/hero3.jpg",
+          image: "/Images/hero/hero3.jpg",
           desc: "Après avoir prélevé la quantité nécessaire de beurre de karité, faites-le fondre doucement au bain-marie (avec une eau entre 35 et 40°). Cette étape peut prendre entre 2 et 5 min.",
         },
         {
-          image: "/images/hero/hero3.jpg",
+          image: "/Images/hero/hero3.jpg",
           desc: "Maintenant que le beurre de karité a fondu, sortez-le du bain-marie et ajoutez les 5 mL d'huile végétale de Jojoba.",
         },
         {
-          image: "/images/hero/hero3.jpg",
+          image: "/Images/hero/hero3.jpg",
           desc: "Ajoutez les 15 gouttes d'huile essentielle de Bergamote sans bergaptène.",
         },
         {
-          image: "/images/hero/hero3.jpg",
+          image: "/Images/hero/hero3.jpg",
           desc: "Ajoutez ensuite les 8 gouttes de Géranium Rosat. ",
         },
         {
-          image: "/images/hero/hero3.jpg",
+          image: "/Images/hero/hero3.jpg",
           desc: "Homogénéisez le mélange en remuant légèrement la totalité des ingrédients.",
         },
       ],
@@ -189,12 +189,12 @@ const data = {
         "de la Charie, T. (2019). Se soigner par les huiles essentielles. Pourquoi et comment ça marche ? Editions du Rocher.",
     },
     {
-      cover: "/images/hero/hero4.jpg",
+      cover: "/Images/hero/hero4.jpg",
       title: "Emma Watson stands up for Turkish women",
       catgeory: "Remède naturel",
       sousCategorie: "A base des plantes",
       authorName: "sunil",
-      authorImg: "/images/author.jpg",
+      authorImg: "/Images/author.jpg",
       time: "08 Dec - 2022",
       isPopulaire: false,
       desc: "Lorsqu'on a une peau acnéique, elle s'accompagne malheureusement bien souvent de points noirs et de pores dilatés. Ces points noirs, dus à des pores trop dilatés qui ne permettent pas au sébum sécrété de s'évacuer complètement, sont le résultat de l'oxydation de ce sébum qui stagne à la surface des pores. Ce masque pour le visage  saura éliminer les boutons d'acné et les points noirs, tout en douceur pour la peau grâce aux propriétés astingentes, séborégulatrices, anti-infectieuses et régénératrices cutanées de ses huiles essentielles et végétales.",
@@ -212,23 +212,23 @@ const data = {
       ],
       recette: [
         {
-          image: "/images/hero/hero4.jpg",
+          image: "/Images/hero/hero4.jpg",
           desc: "Après avoir prélevé la quantité nécessaire de beurre de karité, faites-le fondre doucement au bain-marie (avec une eau entre 35 et 40°). Cette étape peut prendre entre 2 et 5 min.",
         },
         {
-          image: "/images/hero/hero4.jpg",
+          image: "/Images/hero/hero4.jpg",
           desc: "Maintenant que le beurre de karité a fondu, sortez-le du bain-marie et ajoutez les 5 mL d'huile végétale de Jojoba.",
         },
         {
-          image: "/images/hero/hero4.jpg",
+          image: "/Images/hero/hero4.jpg",
           desc: "Ajoutez les 15 gouttes d'huile essentielle de Bergamote sans bergaptène.",
         },
         {
-          image: "/images/hero/hero4.jpg",
+          image: "/Images/hero/hero4.jpg",
           desc: "Ajoutez ensuite les 8 gouttes de Géranium Rosat. ",
         },
         {
-          image: "/images/hero/hero4.jpg",
+          image: "/Images/hero/hero4.jpg",
           desc: "Homogénéisez le mélange en remuant légèrement la totalité des ingrédients.",
         },
       ],
@@ -253,7 +253,7 @@ const data = {
   ],
   hero: [
     {
-      cover: "/images/hero/hero1.jpg",
+      cover: "/Images/hero/hero1.jpg",
       catgeory: "featured",
       title: "Google To Boost Android Security In Few Days",
       authorName: "Salman",
@@ -297,7 +297,7 @@ const data = {
       ],
     },
     {
-      cover: "/images/hero/hero2.jpg",
+      cover: "Images/hero/hero2.jpg",
       catgeory: "sport",
       title: "More than billion football fans attend Brazil world cup",
       authorName: "alex",
@@ -341,7 +341,7 @@ const data = {
       ],
     },
     {
-      cover: "/images/hero/hero3.jpg",
+      cover: "Images/hero/hero3.jpg",
       catgeory: "fashion",
       title: "No escaping new high tech speed cameras",
       authorName: "rina",
@@ -385,7 +385,7 @@ const data = {
       ],
     },
     {
-      cover: "/images/hero/hero4.jpg",
+      cover: "Images/hero/hero4.jpg",
       catgeory: "technology",
       title: "Emma Watson stands up for Turkish women",
       authorName: "sunil",
@@ -437,7 +437,7 @@ const data = {
         "Les aliments riches en antioxydants : Boostez votre santé naturellement",
       date: "19. February 2022",
       comments: 0,
-      cover: "/images/popular/pop1.jpg",
+      cover: "/Images/popular/pop1.jpg",
       isPopulaire: true,
       desc: "Les antioxydants jouent un rôle essentiel dans notre santé en aidant à protéger nos cellules contre les dommages des radicaux libres. Saviez-vous que certains aliments sont particulièrement riches en antioxydants ? Dans cet article, nous allons explorer ces aliments bénéfiques pour la santé et vous montrer comment les intégrer facilement dans votre alimentation quotidienne pour profiter de leurs bienfaits.",
       role: "Le rôle des antioxydants est de protéger les cellules de notre corps contre les dommages causés par les radicaux libres. Les radicaux libres sont des molécules instables et réactives produites lors des processus normaux du métabolisme cellulaire, ainsi que par des facteurs externes tels que la pollution, le tabagisme, les rayonnements UV et certains produits chimiques.Lorsque les radicaux libres s'accumulent en excès dans notre corps, ils peuvent provoquer un déséquilibre appelé stress oxydatif. Le stress oxydatif peut endommager les cellules, les protéines, l'ADN et d'autres composants essentiels de notre organisme, contribuant ainsi au vieillissement prématuré et au développement de diverses maladies, notamment les maladies cardiovasculaires, les maladies neurodégénératives et certains types de cancer.",
@@ -492,7 +492,7 @@ const data = {
       title: "Végétarien",
       date: "19. February 2022",
       comments: 0,
-      cover: "/images/popular/pop2.jpg",
+      cover: "/Images/popular/pop2.jpg",
       isPopulaire: true,
       desc: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis Theme natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna.",
       role: "Le rôle des antioxydants est de protéger les cellules de notre corps contre les dommages causés par les radicaux libres. Les radicaux libres sont des molécules instables et réactives produites lors des processus normaux du métabolisme cellulaire, ainsi que par des facteurs externes tels que la pollution, le tabagisme, les rayonnements UV et certains produits chimiques.Lorsque les radicaux libres s'accumulent en excès dans notre corps, ils peuvent provoquer un déséquilibre appelé stress oxydatif. Le stress oxydatif peut endommager les cellules, les protéines, l'ADN et d'autres composants essentiels de notre organisme, contribuant ainsi au vieillissement prématuré et au développement de diverses maladies, notamment les maladies cardiovasculaires, les maladies neurodégénératives et certains types de cancer.",
@@ -547,7 +547,7 @@ const data = {
       title: "Is This The New Boxing Champion?",
       date: "19. February 2022",
       comments: 0,
-      cover: "/images/popular/pop3.jpg",
+      cover: "/Images/popular/pop3.jpg",
       isPopulaire: true,
       desc: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis Theme natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna.",
       role: "Le rôle des antioxydants est de protéger les cellules de notre corps contre les dommages causés par les radicaux libres. Les radicaux libres sont des molécules instables et réactives produites lors des processus normaux du métabolisme cellulaire, ainsi que par des facteurs externes tels que la pollution, le tabagisme, les rayonnements UV et certains produits chimiques.Lorsque les radicaux libres s'accumulent en excès dans notre corps, ils peuvent provoquer un déséquilibre appelé stress oxydatif. Le stress oxydatif peut endommager les cellules, les protéines, l'ADN et d'autres composants essentiels de notre organisme, contribuant ainsi au vieillissement prématuré et au développement de diverses maladies, notamment les maladies cardiovasculaires, les maladies neurodégénératives et certains types de cancer.",
@@ -602,7 +602,7 @@ const data = {
       title: "Le système immunitaire",
       date: "19. February 2022",
       comments: 0,
-      cover: "/images/popular/pop4.jpg",
+      cover: "/Images/popular/pop4.jpg",
       isPopulaire: true,
       desc: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis Theme natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna.",
       role: "Le rôle des antioxydants est de protéger les cellules de notre corps contre les dommages causés par les radicaux libres. Les radicaux libres sont des molécules instables et réactives produites lors des processus normaux du métabolisme cellulaire, ainsi que par des facteurs externes tels que la pollution, le tabagisme, les rayonnements UV et certains produits chimiques.Lorsque les radicaux libres s'accumulent en excès dans notre corps, ils peuvent provoquer un déséquilibre appelé stress oxydatif. Le stress oxydatif peut endommager les cellules, les protéines, l'ADN et d'autres composants essentiels de notre organisme, contribuant ainsi au vieillissement prématuré et au développement de diverses maladies, notamment les maladies cardiovasculaires, les maladies neurodégénératives et certains types de cancer.",
@@ -657,7 +657,7 @@ const data = {
       title: "Natural Sunlight Boosts Your Immunity",
       date: "19. February 2022",
       comments: 0,
-      cover: "/images/popular/pop5.jpg",
+      cover: "/Images/popular/pop5.jpg",
       isPopulaire: false,
       desc: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis Theme natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna.",
       role: "Le rôle des antioxydants est de protéger les cellules de notre corps contre les dommages causés par les radicaux libres. Les radicaux libres sont des molécules instables et réactives produites lors des processus normaux du métabolisme cellulaire, ainsi que par des facteurs externes tels que la pollution, le tabagisme, les rayonnements UV et certains produits chimiques.Lorsque les radicaux libres s'accumulent en excès dans notre corps, ils peuvent provoquer un déséquilibre appelé stress oxydatif. Le stress oxydatif peut endommager les cellules, les protéines, l'ADN et d'autres composants essentiels de notre organisme, contribuant ainsi au vieillissement prématuré et au développement de diverses maladies, notamment les maladies cardiovasculaires, les maladies neurodégénératives et certains types de cancer.",
@@ -712,7 +712,7 @@ const data = {
       title: "Health Benefits From Asparagus",
       date: "19. February 2022",
       comments: 0,
-      cover: "/images/popular/pop6.jpg",
+      cover: "/Images/popular/pop6.jpg",
       isPopulaire: false,
       desc: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis Theme natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna.",
       role: "Le rôle des antioxydants est de protéger les cellules de notre corps contre les dommages causés par les radicaux libres. Les radicaux libres sont des molécules instables et réactives produites lors des processus normaux du métabolisme cellulaire, ainsi que par des facteurs externes tels que la pollution, le tabagisme, les rayonnements UV et certains produits chimiques.Lorsque les radicaux libres s'accumulent en excès dans notre corps, ils peuvent provoquer un déséquilibre appelé stress oxydatif. Le stress oxydatif peut endommager les cellules, les protéines, l'ADN et d'autres composants essentiels de notre organisme, contribuant ainsi au vieillissement prématuré et au développement de diverses maladies, notamment les maladies cardiovasculaires, les maladies neurodégénératives et certains types de cancer.",
@@ -767,7 +767,7 @@ const data = {
       title: "The Valid Fashion Style For This Fall",
       date: "19. February 2022",
       comments: 0,
-      cover: "/images/popular/pop7.jpg",
+      cover: "/Images/popular/pop7.jpg",
       isPopulaire: false,
       desc: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis Theme natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna.",
       role: "Le rôle des antioxydants est de protéger les cellules de notre corps contre les dommages causés par les radicaux libres. Les radicaux libres sont des molécules instables et réactives produites lors des processus normaux du métabolisme cellulaire, ainsi que par des facteurs externes tels que la pollution, le tabagisme, les rayonnements UV et certains produits chimiques.Lorsque les radicaux libres s'accumulent en excès dans notre corps, ils peuvent provoquer un déséquilibre appelé stress oxydatif. Le stress oxydatif peut endommager les cellules, les protéines, l'ADN et d'autres composants essentiels de notre organisme, contribuant ainsi au vieillissement prématuré et au développement de diverses maladies, notamment les maladies cardiovasculaires, les maladies neurodégénératives et certains types de cancer.",
@@ -822,7 +822,7 @@ const data = {
       title: "Vote For The Top Tracks Of The Month",
       date: "19. February 2022",
       comments: 0,
-      cover: "/images/popular/pop8.jpg",
+      cover: "/Images/popular/pop8.jpg",
       isPopulaire: false,
       desc: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis Theme natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna.",
       role: "Le rôle des antioxydants est de protéger les cellules de notre corps contre les dommages causés par les radicaux libres. Les radicaux libres sont des molécules instables et réactives produites lors des processus normaux du métabolisme cellulaire, ainsi que par des facteurs externes tels que la pollution, le tabagisme, les rayonnements UV et certains produits chimiques.Lorsque les radicaux libres s'accumulent en excès dans notre corps, ils peuvent provoquer un déséquilibre appelé stress oxydatif. Le stress oxydatif peut endommager les cellules, les protéines, l'ADN et d'autres composants essentiels de notre organisme, contribuant ainsi au vieillissement prématuré et au développement de diverses maladies, notamment les maladies cardiovasculaires, les maladies neurodégénératives et certains types de cancer.",
@@ -877,7 +877,7 @@ const data = {
       title: "Picks For This Month’s Best Instagram Shots",
       date: "19. February 2022",
       comments: 0,
-      cover: "/images/popular/pop10.jpg",
+      cover: "/Images/popular/pop10.jpg",
       isPopulaire: false,
       desc: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis Theme natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna.",
       role: "Le rôle des antioxydants est de protéger les cellules de notre corps contre les dommages causés par les radicaux libres. Les radicaux libres sont des molécules instables et réactives produites lors des processus normaux du métabolisme cellulaire, ainsi que par des facteurs externes tels que la pollution, le tabagisme, les rayonnements UV et certains produits chimiques.Lorsque les radicaux libres s'accumulent en excès dans notre corps, ils peuvent provoquer un déséquilibre appelé stress oxydatif. Le stress oxydatif peut endommager les cellules, les protéines, l'ADN et d'autres composants essentiels de notre organisme, contribuant ainsi au vieillissement prématuré et au développement de diverses maladies, notamment les maladies cardiovasculaires, les maladies neurodégénératives et certains types de cancer.",
@@ -930,15 +930,15 @@ const data = {
   tpost: [
     {
       title: "US Promises to give Intel aid to locate the soldiers",
-      cover: "../images/tpost/tpost.webp",
+      cover: "/Images/tpost/tpost.webp",
     },
     {
       title: "Renewable energy dead as industry waits for Policy",
-      cover: "../images/tpost/tpost2.jpg",
+      cover: "/Images/tpost/tpost2.jpg",
     },
     {
       title: "Mount Etna erupts fashion in nice looking pictures",
-      cover: "../images/tpost/tpost3.jpg",
+      cover: "/Images/tpost/tpost3.jpg",
     },
   ],
   utilisateur: [
@@ -1124,7 +1124,7 @@ const data = {
       isTrophe: false,
       marque: {
         nom: "Danit",
-        Image: "/Images/brand/1.png",
+        Image: "Images/brand/1.png",
       },
     },
     {
@@ -1133,7 +1133,7 @@ const data = {
       isTrophe: false,
       marque: {
         nom: "Hollit",
-        Image: "/Images/brand/2.png",
+        Image: "Images/brand/2.png",
       },
     },
     {
@@ -1142,7 +1142,7 @@ const data = {
       isTrophe: false,
       marque: {
         nom: "Jes",
-        Image: "/Images/brand/3.png",
+        Image: "Images/brand/3.png",
       },
     },
     {
@@ -1151,7 +1151,7 @@ const data = {
       isTrophe: false,
       marque: {
         nom: "Black Pem",
-        Image: "/Images/brand/4.png",
+        Image: "Images/brand/4.png",
       },
     },
     {
@@ -1160,7 +1160,7 @@ const data = {
       isTrophe: false,
       marque: {
         nom: "Fashion Live",
-        Image: "/Images/brand/5.png",
+        Image: "Images/brand/5.png",
       },
     },
     {
@@ -1401,27 +1401,27 @@ const data = {
   gallery: [
     {
       title: "galerie 1",
-      cover: "/images/gallery/g1.jpg",
+      cover: "/Images/gallery/g1.jpg",
       author: "tennyson",
     },
     {
       title: "galerie 2",
-      cover: "/images/gallery/g2.jpg",
+      cover: "/Images/gallery/g2.jpg",
       author: "tennyson",
     },
     {
       title: "galerie 3",
-      cover: "/images/gallery/g3.jpg",
+      cover: "/Images/gallery/g3.jpg",
       author: "tennyson",
     },
     {
       title: "galerie 4",
-      cover: "/images/gallery/g4.jpg",
+      cover: "/Images/gallery/g4.jpg",
       author: "tennyson",
     },
     {
       title: "galerie 5",
-      cover: "/images/gallery/g5.jpg",
+      cover: "/Images/gallery/g5.jpg",
       author: "tennyson",
     },
   ],
@@ -1431,28 +1431,28 @@ const data = {
       catgeory: "world",
       title: "We Went Deep Underground For This Amazing Cave Shot",
       date: "19. February 2022",
-      cover: "/images/ppost/pop1.jpg",
+      cover: "/Images/ppost/pop1.jpg",
     },
     {
       id: 2,
       catgeory: "health",
       title: "6 Reasons Why You Shouldn’t Skip Breakfast",
       date: "19. February 2022",
-      cover: "/images/ppost/pop2.jpg",
+      cover: "/Images/ppost/pop2.jpg",
     },
     {
       id: 3,
       catgeory: "food",
       title: "Our Top 5 Restaurants For A Complete Culinary Experience",
       date: "19. February 2022",
-      cover: "/images/ppost/pop3.jpg",
+      cover: "/Images/ppost/pop3.jpg",
     },
     {
       id: 4,
       catgeory: "fashion",
       title: "Hipster Chic Is In Again: Get Some Glasses",
       date: "19. February 2022",
-      cover: "../images/ppost/pop4.jpg",
+      cover: "/Images/ppost/pop4.jpg",
     },
   ],
   lifestyle: [
@@ -1463,7 +1463,7 @@ const data = {
       title:
         "Santé naturelle pour tous les âges : Les enfants et leurs besoins spécifiques",
       date: "19. February 2022",
-      cover: "../images/life/life1.jpg",
+      cover: "/Images/life/life1.jpg",
       introduction:
         "Brève introduction sur l'importance de la santé naturelle et de l'adoption de modes de vie sains dès le plus jeune âge.",
       sections: [
@@ -1499,7 +1499,7 @@ const data = {
       sousCategorie: "Les femmes",
       title: "Surfs Up – Places For Killer Waves",
       date: "19. February 2022",
-      cover: "../images/life/life2.jpg",
+      cover: "/Images/life/life2.jpg",
       introduction:
         "Brève introduction sur l'importance de la santé naturelle et de l'adoption de modes de vie sains dès le plus jeune âge.",
       sections: [
@@ -1535,7 +1535,7 @@ const data = {
       sousCategorie: "Les personnes âgées",
       title: "Learn How To Nail Your Favorite Look",
       date: "19. February 2022",
-      cover: "../images/life/life3.jpg",
+      cover: "/Images/life/life3.jpg",
       introduction:
         "Brève introduction sur l'importance de la santé naturelle et de l'adoption de modes de vie sains dès le plus jeune âge.",
       sections: [
@@ -1571,7 +1571,7 @@ const data = {
       sousCategorie: "Les sportifs",
       title: "Music Playing On R&B Stations",
       date: "19. February 2022",
-      cover: "../images/life/life4.jpg",
+      cover: "/Images/life/life4.jpg",
       introduction:
         "Brève introduction sur l'importance de la santé naturelle et de l'adoption de modes de vie sains dès le plus jeune âge.",
       sections: [
@@ -1607,7 +1607,7 @@ const data = {
       sousCategorie: "la grossesse et l'allaitement",
       title: "Music Playing On R&B Stations Tres Cool",
       date: "19. February 2022",
-      cover: "../images/life/life4.jpg",
+      cover: "/Images/life/life4.jpg",
       introduction:
         "Brève introduction sur l'importance de la santé naturelle et de l'adoption de modes de vie sains dès le plus jeune âge.",
       sections: [
@@ -1645,7 +1645,7 @@ const data = {
       sousCategorie: "Le Miel",
       title: "We Went Deep Underground For This Amazing Cave Shot",
       date: "19. February 2022",
-      cover: "/images/ppost/pop1.jpg",
+      cover: "/Images/ppost/pop1.jpg",
       introduction:
         "Brève introduction sur l'importance de la santé naturelle et de l'adoption de modes de vie sains dès le plus jeune âge.",
       sections: [
@@ -1685,7 +1685,7 @@ const data = {
       sousCategorie: "La Propolis",
       title: "6 Reasons Why You Shouldn’t Skip Breakfast",
       date: "19. February 2022",
-      cover: "/images/ppost/pop2.jpg",
+      cover: "Images/ppost/pop2.jpg",
       introduction:
         "Brève introduction sur l'importance de la santé naturelle et de l'adoption de modes de vie sains dès le plus jeune âge.",
       sections: [
@@ -1725,7 +1725,7 @@ const data = {
       sousCategorie: "La Cire",
       title: "Our Top 5 Restaurants For A Complete Culinary Experience",
       date: "19. February 2022",
-      cover: "/images/ppost/pop3.jpg",
+      cover: "Images/ppost/pop3.jpg",
       introduction:
         "Brève introduction sur l'importance de la santé naturelle et de l'adoption de modes de vie sains dès le plus jeune âge.",
       sections: [
@@ -1765,7 +1765,7 @@ const data = {
       sousCategorie: "Le polaine",
       title: "Hipster Chic Is In Again: Get Some Glasses",
       date: "19. February 2022",
-      cover: "/images/ppost/pop4.jpg",
+      cover: "Images/ppost/pop4.jpg",
       introduction:
         "Brève introduction sur l'importance de la santé naturelle et de l'adoption de modes de vie sains dès le plus jeune âge.",
       sections: [
@@ -1803,32 +1803,32 @@ const data = {
   discover: [
     {
       title: "games",
-      cover: "../images/discover/d1.jpg",
+      cover: "/Images/discover/d1.jpg",
     },
     {
       title: "sports",
-      cover: "../images/discover/d2.jpg",
+      cover: "/Images/discover/d2.jpg",
     },
     {
       title: "humour",
-      cover: "../images/discover/d3.jpg",
+      cover: "/Images/discover/d3.jpg",
     },
     {
       title: "gadgets",
-      cover: "../images/discover/d4.jpg",
+      cover: "/Images/discover/d4.jpg",
     },
     {
       title: "movies",
-      cover: "../images/discover/d5.jpg",
+      cover: "/Images/discover/d5.jpg",
     },
     {
       title: "nitendo",
-      cover: "../images/discover/d6.jpg",
+      cover: "/Images/discover/d6.jpg",
     },
   ],
   Banner: [
     {
-      cover: "Images/banner.png",
+      cover: "/Images/banner.png",
       subtitle: "Umiel Collection",
       title: "Nouveaute",
       desc: "La nouvelle collection de produits dUmiel est centrée sur leur miel biologique pur et offre une gamme élargie de saveurs et doptions pour les amateurs de miel. La collection comprend des miels monofloraux, tels que le miel deucalyptus et le miel de lavande, ainsi que des mélanges de miels polyfloraux, tels que le miel de printemps et le miel dété.",
@@ -1840,7 +1840,7 @@ const data = {
       ],
     },
     {
-      cover: "Images/banner.png",
+      cover: "/Images/banner.png",
       subtitle: "Umiel Reduction",
       title: "Offre Speciale",
       desc: "Faites partie des nombreux clients satisfaits qui ont bénéficié de cette offre spéciale. Ne tardez pas, le temps est compté !",
@@ -1852,7 +1852,7 @@ const data = {
       ],
     },
     {
-      cover: "Images/banner.png",
+      cover: "/Images/banner.png",
       subtitle: "Umiel Univers",
       title: "Rejoignez-Nous",
       desc: "Vous êtes prêt à vivre une expérience professionnelle stimulante et gratifiante ? Rejoignez notre équipe dynamique dès maintenant et découvrez un monde de possibilités illimitées !",
@@ -1864,7 +1864,7 @@ const data = {
       ],
     },
     {
-      cover: "Images/banner.png",
+      cover: "/Images/banner.png",
       subtitle: "Umiel Produit",
       title: "La Nature",
       desc: " Découvrez le pouvoir de guérison pur et naturel que le miel offre depuis des siècles. Ce précieux cadeau de la nature regorge de bienfaits pour notre santé et notre bien-être.",
